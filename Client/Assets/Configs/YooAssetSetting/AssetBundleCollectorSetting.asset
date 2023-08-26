@@ -24,4 +24,28 @@ MonoBehaviour:
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
-      Collectors: []
+      Collectors:
+      - CollectPath: Assets/Arts/Prefab
+        CollectorGUID: 7cbfb0d521b779a4bbfb1124cde12e83
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/Arts/Scene
+        CollectorGUID: 21c79836e6c8bee4eafadaeb34281755
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/Arts/Shader
+        CollectorGUID: 588c7cb700f55c24cb79ec0de40f0d18
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
