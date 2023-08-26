@@ -552,7 +552,7 @@ namespace CSObjectWrapEditor
 
             //指针目前不支持，先过滤
             if (mb.GetParameters().Any(pInfo => pInfo.ParameterType.IsPointer)) return true;
-            if (mb is MethodInfo && (mb as MethodInfo).ReturnType.IsPointer) return true;
+            if (mb is MethodInfo && (mb as MethodInfo).ReturnType.IsPointer) return false;
 
             foreach (var filter in memberFilters)
             {
@@ -644,18 +644,14 @@ namespace CSObjectWrapEditor
             textWriter.Close();
         }
 
-        static string NonmalizeName(string name)
-        {
-            return name.Replace("+", "_").Replace(".", "_").Replace("`", "_").Replace("&", "_").Replace("[", "_").Replace("]", "_").Replace(",", "_");
-        }
-
         static void GenInterfaceBridge(IEnumerable<Type> types, string save_path)
         {
             foreach (var wrap_type in types)
             {
                 if (!wrap_type.IsInterface) continue;
 
-                string filePath = save_path + NonmalizeName(wrap_type.ToString()) + "Bridge.cs";
+                string filePath = save_path + wrap_type.ToString().Replace("+", "").Replace(".", "")
+                    .Replace("`", "").Replace("&", "").Replace("[", "").Replace("]", "").Replace(",", "") + "Bridge.cs";
                 StreamWriter textWriter = new StreamWriter(filePath, false, Encoding.UTF8);
                 GenOne(wrap_type, (type, type_info) =>
                 {
@@ -940,8 +936,6 @@ namespace CSObjectWrapEditor
                     .Where(method => !ignoreCompilerGenerated || !isDefined(method, typeof(CompilerGeneratedAttribute)))
                     .Where(method => !ignoreNotPublic || method.IsPublic)
                     .Where(method => !ignoreProperty || !method.IsSpecialName || (!method.Name.StartsWith("get_") && !method.Name.StartsWith("set_")))
-                    .Where(method => !method.GetParameters().Any(pInfo => pInfo.ParameterType.IsPointer))
-                    .Where(method => !method.ReturnType.IsPointer)
                     .Cast<MethodBase>()
                     .Concat(kv.Key.GetConstructors(bindingAttrOfConstructor).Cast<MethodBase>())
                     .Where(method => !injectByGeneric(method, kv.Value))
@@ -1001,7 +995,8 @@ namespace CSObjectWrapEditor
 
             foreach (var wrap_type in types)
             {
-                string filePath = save_path + NonmalizeName(wrap_type.ToString()) + "Wrap.cs";
+                string filePath = save_path + wrap_type.ToString().Replace("+", "").Replace(".", "")
+                    .Replace("`", "").Replace("&", "").Replace("[", "").Replace("]", "").Replace(",", "") + "Wrap.cs";
                 StreamWriter textWriter = new StreamWriter(filePath, false, Encoding.UTF8);
                 if (wrap_type.IsEnum)
                 {
@@ -1123,7 +1118,7 @@ namespace CSObjectWrapEditor
             var extension_methods_from_lcs = (from t in LuaCallCSharp
                                     where isDefined(t, typeof(ExtensionAttribute))
                                     from method in t.GetMethods(BindingFlags.Static | BindingFlags.Public)
-                                    where isDefined(method, typeof(ExtensionAttribute)) && !isObsolete(method)
+                                    where isDefined(method, typeof(ExtensionAttribute))
                                     where !method.ContainsGenericParameters || isSupportedGenericMethod(method)
                                     select makeGenericMethodIfNeeded(method))
                                     .Where(method => !lookup.ContainsKey(method.GetParameters()[0].ParameterType));
@@ -1131,7 +1126,7 @@ namespace CSObjectWrapEditor
             var extension_methods = (from t in ReflectionUse
                                      where isDefined(t, typeof(ExtensionAttribute))
                                      from method in t.GetMethods(BindingFlags.Static | BindingFlags.Public)
-                                     where isDefined(method, typeof(ExtensionAttribute)) && !isObsolete(method)
+                                     where isDefined(method, typeof(ExtensionAttribute))
                                      where !method.ContainsGenericParameters || isSupportedGenericMethod(method)
                                      select makeGenericMethodIfNeeded(method)).Concat(extension_methods_from_lcs);
             GenOne(typeof(DelegateBridgeBase), (type, type_info) =>
@@ -1737,6 +1732,27 @@ namespace CSObjectWrapEditor
             clear(GeneratorConfig.common_path);
         }
 
+#if UNITY_2018
+        [MenuItem("XLua/Generate Minimize Code", false, 3)]
+        public static void GenMini()
+        {
+            var start = DateTime.Now;
+            Directory.CreateDirectory(GeneratorConfig.common_path);
+            GetGenConfig(XLua.Utils.GetAllTypes());
+            luaenv.DoString("require 'TemplateCommon'");
+            var gen_push_types_setter = luaenv.Global.Get<LuaFunction>("SetGenPushAndUpdateTypes");
+            gen_push_types_setter.Call(GCOptimizeList.Where(t => !t.IsPrimitive && SizeOf(t) != -1).Distinct().ToList());
+            var xlua_classes_setter = luaenv.Global.Get<LuaFunction>("SetXLuaClasses");
+            xlua_classes_setter.Call(XLua.Utils.GetAllTypes().Where(t => t.Namespace == "XLua").ToList());
+            GenDelegateBridges(XLua.Utils.GetAllTypes(false));
+            GenCodeForClass(true);
+            GenLuaRegister(true);
+            callCustomGen();
+            Debug.Log("finished! use " + (DateTime.Now - start).TotalMilliseconds + " ms");
+            AssetDatabase.Refresh();
+        }
+#endif
+
         public delegate IEnumerable<CustomGenTask> GetTasks(LuaEnv lua_env, UserConfig user_cfg);
 
         public static void CustomGen(string template_src, GetTasks get_tasks)
@@ -1818,7 +1834,7 @@ namespace CSObjectWrapEditor
         }
 #if !XLUA_GENERAL
         [UnityEditor.Callbacks.PostProcessBuild(1)]
-        public static void CheckGenerate(BuildTarget target, string pathToBuiltProject)
+        public static void CheckGenrate(BuildTarget target, string pathToBuiltProject)
         {
             if (EditorApplication.isCompiling || Application.isPlaying)
             {
@@ -1826,7 +1842,7 @@ namespace CSObjectWrapEditor
             }
             if (!DelegateBridge.Gen_Flag)
             {
-                throw new InvalidOperationException("Code has not been generated, may be not work in phone!");
+                throw new InvalidOperationException("Code has not been genrated, may be not work in phone!");
             }
         }
 #endif

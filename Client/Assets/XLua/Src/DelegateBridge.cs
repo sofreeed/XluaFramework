@@ -86,7 +86,7 @@ namespace XLua
 
     public static class HotfixDelegateBridge
     {
-#if (UNITY_IPHONE || UNITY_TVOS) && !UNITY_EDITOR
+#if UNITY_IPHONE && !UNITY_EDITOR
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool xlua_get_hotfix_flag(int idx);
 
@@ -117,7 +117,7 @@ namespace XLua
                 DelegateBridge.DelegateBridgeList = newList;
             }
             DelegateBridge.DelegateBridgeList[idx] = val;
-#if (UNITY_IPHONE || UNITY_TVOS) && !UNITY_EDITOR
+#if UNITY_IPHONE && !UNITY_EDITOR
             xlua_set_hotfix_flag(idx, val != null);
 #endif
         }
@@ -127,7 +127,7 @@ namespace XLua
     {
         internal static DelegateBridge[] DelegateBridgeList = new DelegateBridge[0];
 
-        public static bool Gen_Flag { get { return InternalGlobals.Gen_Flag; } }
+        public static bool Gen_Flag = false;
 
         public DelegateBridge(int reference, LuaEnv luaenv) : base(reference, luaenv)
         {
