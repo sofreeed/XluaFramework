@@ -3,6 +3,9 @@ Client/Logs/
 Client/Temp/
 Client/obj/
 Client/UserSettings/
+Client/bundles/
+Client/Assets/StreamingAssets
+Client/.idea/
 //
 *.csproj
 //.idea
