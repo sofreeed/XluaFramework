@@ -4,11 +4,13 @@ Client/Temp/
 Client/obj/
 Client/UserSettings/
 Client/bundles/
-Client/Assets/StreamingAssets
+Client/Assets/StreamingAssets/
+
+
+Client/Assets/FR2_Cache.*
+Client/Assets/Xlua/Gen/
+
 
 Client/Assets/LuaScripts/.idea/
 Client/.idea/
-
-Client/Assets/FR2_Cache.*
-
 *.csproj
