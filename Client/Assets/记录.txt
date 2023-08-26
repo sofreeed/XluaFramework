@@ -1,7 +1,0 @@
-Scripts/
-	Framework
-	GameLogic
-	Tools
-
-Framework改名FrameworkMy
-其他都为Xlua2018
