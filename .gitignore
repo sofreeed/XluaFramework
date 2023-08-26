@@ -8,5 +8,7 @@ Client/Assets/StreamingAssets
 
 Client/Assets/LuaScripts/.idea/
 Client/.idea/
-//
+
+Client/Assets/FR2_Cache.*
+
 *.csproj
