@@ -174,7 +174,7 @@ public class BundleUpdater : MonoBehaviour
         }
         else
         {
-            Logger.Error("BundleUpdate  Package初始化失败:" + initializationOperation.Error);
+            Logger.LogError("BundleUpdate  Package初始化失败:" + initializationOperation.Error);
         }
     }
 
@@ -190,7 +190,7 @@ public class BundleUpdater : MonoBehaviour
         }
         else
         {
-            Logger.Error("BundleUpdate  版本号获取失败:" + operation.Error);
+            Logger.LogError("BundleUpdate  版本号获取失败:" + operation.Error);
         }
     }
 
@@ -207,7 +207,7 @@ public class BundleUpdater : MonoBehaviour
         }
         else
         {
-            Logger.Error("BundleUpdate  Manifest更新失败:" + operation.Error);
+            Logger.LogError("BundleUpdate  Manifest更新失败:" + operation.Error);
         }
     }
 
@@ -220,7 +220,7 @@ public class BundleUpdater : MonoBehaviour
 
         if (downloader.TotalDownloadCount == 0)
         {
-            Logger.Error("BundleUpdate  需要更新文件个数：0");
+            Logger.LogError("BundleUpdate  需要更新文件个数：0");
             ClearUnusedCacheFiles();
         }
         else
@@ -230,7 +230,7 @@ public class BundleUpdater : MonoBehaviour
             int totalDownloadCount = downloader.TotalDownloadCount;
             long totalDownloadBytes = downloader.TotalDownloadBytes;
 
-            Logger.Error("BundleUpdate  需要更新文件个数:" + totalDownloadCount + "@文件总大小：" + totalDownloadBytes);
+            Logger.LogError("BundleUpdate  需要更新文件个数:" + totalDownloadCount + "@文件总大小：" + totalDownloadBytes);
             
             //TODO：做提示框，玩家点击后下载
             //float sizeMB = totalDownloadBytes / 1048576f;
@@ -262,7 +262,7 @@ public class BundleUpdater : MonoBehaviour
         }
         else
         {
-            Logger.Error("BundleUpdate  更新Bundle失败" + downloader.Error);
+            Logger.LogError("BundleUpdate  更新Bundle失败" + downloader.Error);
         }
         
     }
@@ -271,11 +271,11 @@ public class BundleUpdater : MonoBehaviour
     {
         if (isSucceed)
         {
-            Logger.Error("BundleUpdate Bundle下载完成...");
+            Logger.LogError("BundleUpdate Bundle下载完成...");
         }
         else
         {
-            Logger.Error("BundleUpdate Bundle下载失败...");
+            Logger.LogError("BundleUpdate Bundle下载失败...");
         }
     }
     
@@ -286,7 +286,7 @@ public class BundleUpdater : MonoBehaviour
     
     private void OnDownloadErrorCallback(string fileName, string error)
     {
-        Logger.Error("BundleUpdate 文件下载失败：" + fileName + "@失败原因：" + error);
+        Logger.LogError("BundleUpdate 文件下载失败：" + fileName + "@失败原因：" + error);
     }
     
     private void OnDownloadProgressCallback(int totalDownloadCount, int currentDownloadCount,

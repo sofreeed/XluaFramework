@@ -69,6 +69,6 @@ public class Launcher : MonoBehaviour
 
     void GameStart()
     {
-        Logger.Info("开始游戏...");
+        Logger.Log("开始游戏...");
     }
 }
