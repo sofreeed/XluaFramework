@@ -104,6 +104,8 @@ public static class GenConfig
     public static List<Type> CSharpCallLua = new List<Type>() {
 		// unity
 		typeof(Action),
+		typeof(Action<float>),
+		typeof(Action<float, float>),
         typeof(Action<int>),
         typeof(Action<WWW>),
         typeof(Callback),
