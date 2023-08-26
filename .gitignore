@@ -5,7 +5,8 @@ Client/obj/
 Client/UserSettings/
 Client/bundles/
 Client/Assets/StreamingAssets
+
+Client/Assets/LuaScripts/.idea/
 Client/.idea/
 //
 *.csproj
-//.idea
