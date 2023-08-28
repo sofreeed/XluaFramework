@@ -153,7 +153,7 @@ public static class XLuaHelperExporter
         typeof(Array),
         typeof(IList),
         typeof(IDictionary),
-        typeof(Activator),
+        //typeof(Activator),
         //typeof(Type),
         typeof(BindingFlags),
     };
