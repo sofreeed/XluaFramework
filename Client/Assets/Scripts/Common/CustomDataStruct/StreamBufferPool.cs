@@ -290,9 +290,9 @@ namespace CustomDataStruct
         {
             typeof(StreamBufferPool),
             typeof(StreamBuffer),
-            typeof(MemoryStream),
-            typeof(BinaryReader),
-            typeof(BinaryWriter),
+            //typeof(MemoryStream),
+            //typeof(BinaryReader),
+            //typeof(BinaryWriter),
         };
     }
 #endif
