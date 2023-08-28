@@ -108,7 +108,7 @@ public static class BinaryWriterExtentionsExporter
     [LuaCallCSharp]
     public static List<Type> LuaCallCSharp = new List<Type>()
     {
-        typeof(BinaryWriter),
+        //typeof(BinaryWriter),
         typeof(BinaryWriterExtentions),
     };
 }
