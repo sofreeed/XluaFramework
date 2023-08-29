@@ -3,6 +3,7 @@
 -- 单例类
 --]]
 
+---@class Singleton:BaseClass
 local Singleton = BaseClass("Singleton");
 
 local function __init(self)

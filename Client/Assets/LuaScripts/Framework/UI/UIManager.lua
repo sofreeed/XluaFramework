@@ -10,6 +10,9 @@
 --]]
 
 local Messenger = require "Framework.Common.Messenger"
+
+---@class UIManager:Singleton
+---@field GetInstance UIManager
 local UIManager = BaseClass("UIManager", Singleton)
 
 -- UIRoot路径

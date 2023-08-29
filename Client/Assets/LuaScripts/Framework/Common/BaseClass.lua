@@ -12,7 +12,8 @@ ClassType = {
 	class = 1,
 	instance = 2,
 }
- 
+
+---@class BaseClass
 function BaseClass(classname, super)
 	assert(type(classname) == "string" and #classname > 0)
 	-- 生成一个类类型
