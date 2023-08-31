@@ -26,6 +26,7 @@ LayerMask	= require "Common.Tools.UnityEngine.LayerMask"
 Plane		= require "Common.Tools.UnityEngine.Plane"
 Time		= require "Common.Tools.UnityEngine.Time"
 Object		= require "Common.Tools.UnityEngine.Object"
+--Object		= require "Common.Tools.UnityEngine.Object"
 
 list		= require "Common.Tools.list"
 Queue		= require "Common.Tools.Queue"
