@@ -228,7 +228,7 @@ public class GameLaunch : MonoBehaviour
         abloader.Dispose();
 
         XLuaManager.Instance.OnInit();
-        XLuaManager.Instance.StartHotfix();
+        //XLuaManager.Instance.StartHotfix();
         XLuaManager.Instance.StartGame();
 
         CustomDataStruct.Helper.Startup();
