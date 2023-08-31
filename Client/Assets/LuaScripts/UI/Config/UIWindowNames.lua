@@ -3,6 +3,7 @@
 -- UI窗口名字定义，手动添加
 --]]
 
+---@class UIWindowNames
 local UIWindowNames = {
 	-- 登陆模块
 	UILogin = "UILogin",

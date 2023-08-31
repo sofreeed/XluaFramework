@@ -35,6 +35,7 @@ local DataNewindex = function(mt, key, value)
 	end
 end
 
+---@class DataClass
 function DataClass(classname, data_tb, super)
 	assert(type(classname) == "string" and #classname > 0)
     local cls

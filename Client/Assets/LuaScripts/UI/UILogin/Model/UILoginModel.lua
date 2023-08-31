@@ -8,6 +8,7 @@
 -- 4、OnEnable函数每次在窗口打开时调用，可传递参数用来初始化Model
 --]]
 
+---@class UILoginModel
 local UILoginModel = BaseClass("UILoginModel", UIBaseModel)
 local base = UIBaseModel
 

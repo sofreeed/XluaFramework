@@ -13,6 +13,7 @@
 -- 5、需要定时刷新的界面，最好启用定时器、协程，界面需要刷新的频率一般较低，倒计时之类的只需要每秒钟更新一次即可
 --]]
 
+---@class UIBaseComponent:Updatable
 local UIBaseComponent = BaseClass("UIBaseComponent", Updatable)
 local base = Updatable
 

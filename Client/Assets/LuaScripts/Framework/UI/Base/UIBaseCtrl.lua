@@ -8,6 +8,7 @@
 -- 4、Ctrl层是无状态的，不能保存变量--调试模式下强制
 --]]
 
+---@class UIBaseCtrl
 local UIBaseCtrl = BaseClass("UIBaseCtrl")
 
 local function __init(self, model)

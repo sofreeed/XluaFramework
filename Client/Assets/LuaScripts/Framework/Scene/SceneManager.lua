@@ -6,6 +6,8 @@
 -- 2、场景loading的UI窗口这里统一管理，由于这个窗口很简单，更新进度数据时直接写Model层
 --]]
 
+---@class SceneManager:Singleton
+------@field GetInstance SceneManager
 local SceneManager = BaseClass("SceneManager", Singleton)
 
 -- 构造函数

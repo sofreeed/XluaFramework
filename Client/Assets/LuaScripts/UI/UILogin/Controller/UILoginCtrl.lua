@@ -3,6 +3,7 @@
 -- UILogin控制层
 --]]
 
+---@class UILoginCtrl
 local UILoginCtrl = BaseClass("UILoginCtrl", UIBaseCtrl)
 local MsgIDDefine = require "Net.Config.MsgIDDefine"
 

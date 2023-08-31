@@ -7,6 +7,7 @@
 -- 3、组件命名参考代码规范
 --]]
 
+---@class UILoginView:UIBaseView
 local UILoginView = BaseClass("UILoginView", UIBaseView)
 local base = UIBaseView
 
@@ -37,12 +38,14 @@ local test_timer_path = "TestTimer"
 local test_updater_path = "TestUpdater"
 local test_coroutine_path = "TestCoroutine"
 
+
 local function ClickOnLoginBtn(self)
 	local name = self.account_input:GetText()
 	local password = self.password_input:GetText()
 	self.ctrl:LoginServer(name, password)
 end
 
+---@param self UILoginView
 local function OnCreate(self)
 	base.OnCreate(self)
 	-- 初始化各个组件

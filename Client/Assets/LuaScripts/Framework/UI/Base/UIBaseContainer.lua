@@ -8,6 +8,7 @@
 -- 4、很重要：子组件必须保证名字互斥，即一个不同的名字要保证对应于Unity中一个不同的Transform
 --]]
 
+---@class UIBaseContainer:UIBaseComponent
 local UIBaseContainer = BaseClass("UIBaseContainer", UIBaseComponent)
 -- 基类，用来调用基类方法
 local base = UIBaseComponent

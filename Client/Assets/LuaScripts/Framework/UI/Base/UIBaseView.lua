@@ -9,6 +9,7 @@
 -- 5、任何情况下不要在游戏逻辑代码操作界面刷新---除了打开、关闭界面
 --]]
 
+---@class UIBaseView:UIBaseContainer
 local UIBaseView = BaseClass("UIBaseView", UIBaseContainer)
 local base = UIBaseContainer
 
