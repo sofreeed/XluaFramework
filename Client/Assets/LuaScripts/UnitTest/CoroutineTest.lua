@@ -71,6 +71,7 @@ local function TestYield(finished_flag)
 			elseif cb_count == 2 then
 				assert(#param == 1 and param[1] == "666")
 				assert(Time.frameCount == frame_count + 6)
+				-- 父协程回调也可以使用等待函数
 				coroutine.waitforframes(12)
 				assert(Time.frameCount == frame_count + 18)
 				return
@@ -81,7 +82,7 @@ local function TestYield(finished_flag)
 		local func = function(inner_frame_count)
 			assert(inner_frame_count == frame_count)
 			coroutine.waitforframes(5)
-			-- yieldreturn测试
+			-- yieldreturn 将调用callback，并把参数传递给它
 			coroutine.yieldreturn(frame_count + 5)
 			-- yieldreturn一定会等待一帧
 			assert(Time.frameCount == frame_count + 6)
@@ -90,7 +91,8 @@ local function TestYield(finished_flag)
 			-- yieldbreak测试
 			return coroutine.yieldbreak(666, "finished")
 		end
-		-- 启动子级协程并等待
+		
+		-- 启动子级协程并等待(挂起主协程)
 		local ret1, ret2 = coroutine.yieldstart(func, callback, frame_count)
 		assert(ret1 == 666 and ret2 == "finished")
 		-- yieldbreak不会等待一帧
@@ -136,6 +138,7 @@ local function TestYieldCallback(finished_flag)
 			coroutine.waituntil(until_func)
 			-- yieldcallback测试
 			coroutine.waitforasyncop(async_op, function(co, progress)
+				--子级协程异步回调并没有运行在子级协程当中，不能使用yieldreturn，实际上不能使用任何协程相关接口，除了start
 				coroutine.yieldcallback(co, progress)
 			end)
 			-- 说明：这里可能会晚一帧，取决于lua定时器管理系统对各个定时器的调用顺序，而目前是随机的
