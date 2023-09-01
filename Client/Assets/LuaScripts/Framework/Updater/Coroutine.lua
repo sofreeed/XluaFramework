@@ -361,15 +361,16 @@ end
 
 coroutine.start = start
 coroutine.yieldstart = yieldstart
-coroutine.yieldreturn = yieldreturn
-coroutine.yieldcallback = yieldcallback
-coroutine.yieldbreak = yieldbreak
+coroutine.yieldreturn = yieldreturn			--把子协程的数据传送到父协程的callback
+coroutine.yieldcallback = yieldcallback		--在子协程的waitforasyncop函数中不能用yieldreturn，用yieldcallback代替
+coroutine.yieldbreak = yieldbreak			
+--等待函数
 coroutine.waitforfixedupdate = waitforfixedupdate
 coroutine.waitforframes = waitforframes
 coroutine.waitforseconds = waitforseconds
-coroutine.waitforasyncop = waitforasyncop
-coroutine.waituntil = waituntil
-coroutine.waitwhile = waitwhile
+coroutine.waitforasyncop = waitforasyncop		--async_operation.isDone如果为false，每帧调用callback；为true，停止
+coroutine.waituntil = waituntil		--return true
+coroutine.waitwhile = waitwhile		--return true
 coroutine.waitforendofframe = waitforendofframe
 coroutine.stopwaiting = stopwaiting
 
