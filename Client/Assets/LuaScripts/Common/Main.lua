@@ -11,6 +11,7 @@ require "Common.LuaUtil"
 require "Common.TableUtil"
 require "Common.StringUtil"
 require "Common.Define"
+require "Common.Fsm"
 
 Mathf		= require "Common.Tools.UnityEngine.Mathf"
 Vector2		= require "Common.Tools.UnityEngine.Vector2"
