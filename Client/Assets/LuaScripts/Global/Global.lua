@@ -15,6 +15,9 @@ require "Framework.Common.BaseClass"
 require "Framework.Common.DataClass"
 require "Framework.Common.ConstClass"
 
+-- 创建框架Tools，将来再换地方
+require "Common.Fsm"
+
 -- 创建全局模块
 Config = require "Global.Config"
 Singleton = require "Framework.Common.Singleton"
