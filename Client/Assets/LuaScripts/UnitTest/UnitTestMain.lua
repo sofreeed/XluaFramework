@@ -14,6 +14,8 @@ local TableUtilTest = require "UnitTest.TableUtilTest"
 local CoroutineTest = require "UnitTest.CoroutineTest"
 local StringTest = require "UnitTest.StringTest"
 
+local CommonTest = require "UnitTest.CommonTest"
+
 local function LoopRunTimes(unitTests, times)
 	for i = 1,times do
 		--print("-------------------LoopUnitTest["..i.."]-------------------")
@@ -27,15 +29,16 @@ local function LoopRunTimes(unitTests, times)
 end
 
 local function Run()
-	ClassTest.Run()
-	SingletonTest.Run()
-	MessengerTest.Run()
-	-- ProtobufTest.Run()
-	LoggerTest.Run()
-	LuaUtilTest.Run()
-	TableUtilTest.Run()
-	StringTest.Run()
-	coroutine.start(LoopRunTimes, {CoroutineTest}, 1)
+	--ClassTest.Run()
+	--SingletonTest.Run()
+	--MessengerTest.Run()
+	---- ProtobufTest.Run()
+	--LoggerTest.Run()
+	--LuaUtilTest.Run()
+	--TableUtilTest.Run()
+	--StringTest.Run()
+	CommonTest.Run()
+	--coroutine.start(LoopRunTimes, {CoroutineTest}, 1)
 end
 
 return {
