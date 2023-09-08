@@ -6,7 +6,7 @@
 local EffectConfig = {
 	UITaskFinish = {
 		Name = "UITaskFinish",
-		EffectPath = "Effect/Prefab/UI/ef_ui_TaskFinish.prefab",
+		EffectPath = "Assets/AssetsPackage/Effect/Prefab/UI/ef_ui_TaskFinish.prefab",
 		-- 是否为UI特效，场景特效等可能使用情况会复杂些，到时候再考虑是否做扩展
 		IsUIEffect = true,
 		-- 是否循环：循环的特效不会被自动回收
@@ -16,7 +16,7 @@ local EffectConfig = {
 	},
 	UIPetRankYellow = {
 		Name = "UIPetRankYellow",
-		EffectPath = "Effect/Prefab/UI/ef_ui_pet_rank_yellow_test.prefab",
+		EffectPath = "Assets/AssetsPackage/Effect/Prefab/UI/ef_ui_pet_rank_yellow_test.prefab",
 		IsUIEffect = true,
 		IsLoop = true,
 		LiveTime = 0,

@@ -288,9 +288,23 @@ end
 
 local function __AsyncOpCheck(co, async_operation, callback)
 	if callback ~= nil then
-		callback(co, async_operation.progress)
+		if async_operation.progress ~= nil then
+			callback(co, async_operation.progress)
+		elseif async_operation.Progress ~= nil then
+			callback(co, async_operation.Progress)
+		else
+			Logger.LogError("async_operation progress 属性为空！");
+		end
 	end
-	return async_operation.isDone
+
+	if async_operation.isDone ~= nil then
+		return async_operation.isDone
+	elseif async_operation.IsDone ~= nil then
+		return async_operation.IsDone
+	else
+		Logger.LogError("async_operation isDone 属性为空！");
+		return true; 	--返回true让协程停掉
+	end
 end
 
 -- 等待异步操作完成，并在Update执行完毕resume

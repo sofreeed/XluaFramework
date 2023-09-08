@@ -10,7 +10,7 @@ local UINoticeTip = {
 	Model = require "UI.UINoticeTip.Model.UINoticeTipModel",
 	Ctrl = nil,
 	View = require "UI.UINoticeTip.View.UINoticeTipView",
-	PrefabPath = "UI/Prefabs/Common/UINoticeTip.prefab",
+	PrefabPath = "Assets/AssetsPackage/UI/Prefabs/Common/UINoticeTip.prefab",
 }
 
 return {

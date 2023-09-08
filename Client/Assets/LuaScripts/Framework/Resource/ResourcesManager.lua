@@ -10,42 +10,27 @@
 --]]
 
 local ResourcesManager = BaseClass("ResourcesManager", Singleton)
-local AssetBundleManager = CS.AssetBundles.AssetBundleManager.Instance
-local AssetBundleUtility = CS.AssetBundles.AssetBundleUtility
 
--- 是否有加载任务正在进行
+local _resourcePackage;
+
+local function Startup(self)
+	_resourcePackage = CS.YooAsset.YooAssets.GetPackage("DefaultPackage");
+end
+
+-- 是否有加载任务正在进行，YooAssets没有此接口，暂时注掉
+-- 是否切换场景时要等资源加载完？
 local function IsProsessRunning(self)
-	return AssetBundleManager.IsProsessRunning
+	
 end
 
 -- 设置常驻包
--- 注意：
--- 1、公共包（被2个或者2个其它AB包所依赖的包）底层会自动设置常驻包
--- 2、任何情况下不想被卸载的非公共包（如Lua脚本）需要手动设置常驻包
 local function SetAssetBundleResident(self, path, resident)
-	local assetbundleName = AssetBundleUtility.AssetBundlePathToAssetBundleName(path)
-	resident = resident and true or false
-	AssetBundleManager:SetAssetBundleResident(assetbundleName, resident)
+	
 end
 
--- 异步加载AssetBundle：回调形式
-local function LoadAssetBundleAsync(self, path, callback, ...)
-	assert(path ~= nil and type(path) == "string" and #path > 0, "path err : "..path)
-	assert(callback ~= nil and type(callback) == "function", "Need to provide a function as callback")
-	local args = SafePack(...)
-	coroutine.start(function()
-		local assetbundle = self:CoLoadAssetBundleAsync(path, nil)
-		callback(SafeUnpack(args))
-	end)
-end
-
--- 异步加载AssetBundle：协程形式
-local function CoLoadAssetBundleAsync(self, path, progress_callback)
-	assert(path ~= nil and type(path) == "string" and #path > 0, "path err : "..path)
-	local assetbundleName = AssetBundleUtility.AssetBundlePathToAssetBundleName(path)
-	local loader = AssetBundleManager:LoadAssetBundleAsync(assetbundleName,nil,false)
-	coroutine.waitforasyncop(loader, progress_callback)
-    loader:Dispose()
+-- 异步加载场景
+local function LoadSceneAsync(self)
+	
 end
 
 -- 异步加载Asset：回调形式
@@ -63,9 +48,9 @@ end
 -- 异步加载Asset：协程形式
 local function CoLoadAsync(self, path, res_type, progress_callback)
 	assert(path ~= nil and type(path) == "string" and #path > 0, "path err : "..path)
-	local loader = AssetBundleManager:LoadAssetAsync(path, res_type)
+	local loader = _resourcePackage:LoadAssetAsync(path, res_type)
 	coroutine.waitforasyncop(loader, progress_callback)
-	local asset = loader.asset
+	local asset = loader.AssetObject
     loader:Dispose()
 	if IsNull(asset) then
 		Logger.LogError("Asset load err : "..path)
@@ -73,18 +58,18 @@ local function CoLoadAsync(self, path, res_type, progress_callback)
 	return asset
 end
 
--- 清理资源：切换场景时调用
+-- 清理资源：目前是切换场景的时候用
+-- 视情况考虑按帧数或者秒数来释放
 local function Cleanup(self)
-	AssetBundleManager:ClearAssetsCacheExcludeLua()
-	AssetBundleManager:UnloadAllUnusedResidentAssetBundles()
+	_resourcePackage:UnloadUnusedAssets();
 end
 
-ResourcesManager.IsProsessRunning = IsProsessRunning
-ResourcesManager.SetAssetBundleResident = SetAssetBundleResident
-ResourcesManager.LoadAssetBundleAsync = LoadAssetBundleAsync
-ResourcesManager.CoLoadAssetBundleAsync = CoLoadAssetBundleAsync
+ResourcesManager.Startup = Startup
 ResourcesManager.LoadAsync = LoadAsync
 ResourcesManager.CoLoadAsync = CoLoadAsync
+ResourcesManager.LoadSceneAsync = LoadSceneAsync
+ResourcesManager.IsProsessRunning = IsProsessRunning
+ResourcesManager.SetAssetBundleResident = SetAssetBundleResident
 ResourcesManager.Cleanup = Cleanup
 
 return ResourcesManager

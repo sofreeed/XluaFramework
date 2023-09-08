@@ -18,12 +18,15 @@ public class GameLaunch : MonoBehaviour
     AssetbundleUpdater updater;
     string channelName;
     
+    
+    
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
     }
 
+    private DateTime start;
     IEnumerator Start ()
     {
         //注释掉IOS的推送服务
@@ -33,9 +36,10 @@ public class GameLaunch : MonoBehaviour
 //#endif
 
         // 启动资源管理模块
-        var start = DateTime.Now;
-        yield return AssetBundleManager.Instance.Initialize();
-        Logger.Log(string.Format("AssetBundleManager Initialize use {0}ms", (DateTime.Now - start).Milliseconds));
+        start = DateTime.Now;
+        yield return YooAssetUpdater.Instance.Init();
+        //yield return AssetBundleManager.Instance.Initialize();
+        Logger.Log(string.Format("YooAssetUpdater Initialize use {0}ms", (DateTime.Now - start).Milliseconds));
 
         yield return null;
 
@@ -66,20 +70,28 @@ public class GameLaunch : MonoBehaviour
         Logger.Log(string.Format("Load noticeTipPrefab use {0}ms", (DateTime.Now - start).Milliseconds));
 
         // 开始更新
+        //start = DateTime.Now;
+        //yield return updater.StartCheckUpdate();
+        //Logger.Log(string.Format("CheckUpdate use {0}ms", (DateTime.Now - start).Milliseconds));
+        //Destroy(updater);
+        //yield return null;
+        
         start = DateTime.Now;
-        yield return updater.StartCheckUpdate();
+        YooAssetUpdater.Instance.HotUpdate(OnUpdateComplete);
+	}
+
+    private void OnUpdateComplete()
+    {
         Logger.Log(string.Format("CheckUpdate use {0}ms", (DateTime.Now - start).Milliseconds));
-        Destroy(updater);
-        yield return null;
         
         // 启动xlua框架
         start = DateTime.Now;
         XLuaManager.Instance.Startup();
-        yield return StartGame();
+        StartCoroutine(StartGame());
         Logger.Log(string.Format("XLuaManager StartUp use {0}ms", (DateTime.Now - start).Milliseconds));
-	}
+    }
 
-     IEnumerator InitAppVersion()
+    IEnumerator InitAppVersion()
     {
         var streamingAppVersion = "0.0.0";
         var streamingResVersion = "0.0.0";

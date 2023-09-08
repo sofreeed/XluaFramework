@@ -1,14 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 using YooAsset;
+using Debug = UnityEngine.Debug;
 
 public class YooAssetUpdater : MonoBehaviour
 {
+    public static YooAssetUpdater Instance;
+    
     public EPlayMode PlayMode = EPlayMode.EditorSimulateMode;
 
     public Transform UIRoot;
@@ -19,47 +24,32 @@ public class YooAssetUpdater : MonoBehaviour
     private string packageVersion;
     private ResourceDownloaderOperation downloader;
 
+    private Action _updateCallback;
+    
 
     void Start()
     {
-        YooAssets.Initialize();
-        YooAssets.SetOperationSystemMaxTimeSlice(30);
-
-        StartCoroutine(HotUpdate());
+        Instance = this;
     }
-
+    
     void GameStart()
     {
-        //StartCoroutine(DoGameStart());
+        StartCoroutine(DoGameStart());
     }
 
     IEnumerator DoGameStart()
     {
-        //AssetOperationHandle spriteAtlasHandle =
-        //    package.LoadAssetAsync<SpriteAtlas>("Assets/Arts/UI/LoginTest/Sprites/LoginTestAtlas"); 
-        AssetOperationHandle spriteAtlasHandle =
-            package.LoadAssetAsync<SpriteAtlas>("Assets/Arts/UI/LoginTest/Atlas/LoginTestAtlas");
-        yield return spriteAtlasHandle;
-        SpriteAtlas atlas = spriteAtlasHandle.AssetObject as SpriteAtlas;
-        Sprite sprite1 = atlas.GetSprite("main_bottom_icon_activity");
-
-
-        AssetOperationHandle spriteHandle =
-            package.LoadAssetAsync<Sprite>("Assets/Arts/UI/LoginTest/Sprites/main_bottom_icon_shop.png");
-        yield return spriteHandle;
-        Sprite sprite = spriteHandle.AssetObject as Sprite;
-
-
         AssetOperationHandle prefabHandle =
-            package.LoadAssetAsync<GameObject>("Assets/Arts/UI/LoginTest/Prefabs/LoginTest");
+            package.LoadAssetAsync<GameObject>("Assets/Arts/Prefab/Cube.prefab");
         yield return prefabHandle;
-        //GameObject prefab = prefabHandle.AssetObject as GameObject;
         GameObject go = prefabHandle.InstantiateSync(UIRoot);
-
-        //UIRoot.GetComponentInChildren<Image>().sprite = sprite1;
-        GameObject.Find("Image (1)").GetComponent<Image>().sprite = sprite;
-        GameObject.Find("Image (2)").GetComponent<Image>().sprite = sprite1;
-
+        //GameObject go = (GameObject)prefabHandle.AssetObject;
+        //GameObject ins = GameObject.Instantiate(go);
+        
+        prefabHandle.Release();
+        
+        package.UnloadUnusedAssets();
+        
         yield return 1;
     }
 
@@ -87,17 +77,22 @@ public class YooAssetUpdater : MonoBehaviour
         //spriteHandle.Completed += OnLoadSpriteCompleted;
     }
 
-    IEnumerator HotUpdate()
+    public IEnumerator Init()
     {
-        yield return null;
+        YooAssets.Initialize();
+        YooAssets.SetOperationSystemMaxTimeSlice(30);
+        
+        yield return InitPackage(false);
+    }
 
-        StartCoroutine(InitPackage(false));
+    public void HotUpdate(Action updateCallback)
+    {
+        _updateCallback = updateCallback;
+        StartCoroutine(GetStaticVersion());
     }
 
     private IEnumerator InitPackage(bool isUpdate)
     {
-        yield return new WaitForSeconds(1f);
-
         var playMode = PlayMode;
 
         // 创建默认的资源包
@@ -139,10 +134,11 @@ public class YooAssetUpdater : MonoBehaviour
         yield return initializationOperation;
         if (package.InitializeStatus == EOperationStatus.Succeed)
         {
-            if (isUpdate)
-                StartCoroutine(GetStaticVersion());
-            else
-                Debug.LogError("YooAssetSamples  不进行更新，初始化结束！");
+            //if (isUpdate)
+            //    StartCoroutine(GetStaticVersion());
+            //else
+            //    Debug.LogError("YooAssetSamples  不进行更新，初始化结束！");
+            Debug.Log("YooAssetSamples  初始化成功！");
         }
         else
         {
@@ -152,8 +148,6 @@ public class YooAssetUpdater : MonoBehaviour
 
     private IEnumerator GetStaticVersion()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-
         var operation = package.UpdatePackageVersionAsync();
         yield return operation;
 
@@ -170,8 +164,6 @@ public class YooAssetUpdater : MonoBehaviour
 
     private IEnumerator UpdateManifest()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-
         var operation = package.UpdatePackageManifestAsync(packageVersion);
         yield return operation;
 
@@ -189,8 +181,6 @@ public class YooAssetUpdater : MonoBehaviour
 
     IEnumerator CreateDownloader()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-
         int downloadingMaxNum = 10;
         int failedTryAgain = 3;
         downloader = YooAssets.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
@@ -216,6 +206,8 @@ public class YooAssetUpdater : MonoBehaviour
 
             StartCoroutine(BeginDownload());
         }
+
+        yield return null;
     }
 
     private IEnumerator BeginDownload()
@@ -256,8 +248,11 @@ public class YooAssetUpdater : MonoBehaviour
     private void OnClearUnusedCacheFilesCompleted(AsyncOperationBase obj)
     {
         Debug.Log("没用的文件 清理完毕！");
+        
+        if (_updateCallback != null)
+            _updateCallback();
 
-        GameStart();
+        //GameStart();
     }
 
 

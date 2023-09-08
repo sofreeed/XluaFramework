@@ -20,6 +20,43 @@ MonoBehaviour:
   - PackageName: DefaultPackage
     PackageDesc: 
     Groups:
+    - GroupName: DefaultPackage
+      GroupDesc: 
+      AssetTags: 
+      ActiveRuleName: DisableGroup
+      Collectors:
+      - CollectPath: Assets/AssetsPackage/Effect/Prefab
+        CollectorGUID: c597e3f3abc811b4a9b5e8c2af4ba859
+        CollectorType: 0
+        AddressRuleName: AddressByFilePath
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/AssetsPackage/Models
+        CollectorGUID: d6a65953a143e894ca73748cac082586
+        CollectorType: 0
+        AddressRuleName: AddressByFilePath
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/AssetsPackage/UI/Prefabs
+        CollectorGUID: 25f3ef357ebdbb64c8d710bbb1e6e36f
+        CollectorType: 0
+        AddressRuleName: AddressByFilePath
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/AssetsPackage/Shaders
+        CollectorGUID: 14d8645cbaf3cf44d811b74ba91e9933
+        CollectorType: 0
+        AddressRuleName: AddressByFilePath
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
     - GroupName: Test
       GroupDesc: 
       AssetTags: 
@@ -29,15 +66,7 @@ MonoBehaviour:
         CollectorGUID: 7cbfb0d521b779a4bbfb1124cde12e83
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackSeparately
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
-      - CollectPath: Assets/Arts/Scene
-        CollectorGUID: 21c79836e6c8bee4eafadaeb34281755
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackSeparately
+        PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 

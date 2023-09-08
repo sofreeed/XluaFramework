@@ -20,7 +20,7 @@ local UILogin = {
 	Model = require "UI.UILogin.Model.UILoginModel",
 	Ctrl = require "UI.UILogin.Controller.UILoginCtrl",
 	View = require "UI.UILogin.View.UILoginView",
-	PrefabPath = "UI/Prefabs/UILogin/UILogin.prefab",
+	PrefabPath = "Assets/AssetsPackage/UI/Prefabs/UILogin/UILogin.prefab",
 }
 
 local UILoginServer = {
@@ -29,7 +29,7 @@ local UILoginServer = {
 	Model = require "UI.UILogin.Model.UILoginServerModel",
 	Ctrl = require "UI.UILogin.Controller.UILoginServerCtrl",
 	View = require "UI.UILogin.View.UILoginServerView",
-	PrefabPath = "UI/Prefabs/UILogin/UILoginServer.prefab",
+	PrefabPath = "Assets/AssetsPackage/UI/Prefabs/UILogin/UILoginServer.prefab",
 }
 
 return {
