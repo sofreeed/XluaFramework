@@ -138,8 +138,8 @@ end
 
 local function OnRefresh(self)
 	-- 各组件刷新
-	self.app_version_text:SetText("游戏版本号："..self.model.client_app_ver)
-	self.res_version_text:SetText("资源版本号："..self.model.client_res_ver)
+	--self.app_version_text:SetText("游戏版本号："..self.model.client_app_ver) 
+	--self.res_version_text:SetText("资源版本号："..self.model.client_res_ver)
 	self.account_input:SetText(self.model.account)
 	self.password_input:SetText(self.model.password)
 	OnRefreshServerInfo(self)

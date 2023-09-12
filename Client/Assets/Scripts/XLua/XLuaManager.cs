@@ -1,7 +1,6 @@
-﻿using AssetBundles;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using XLua;
+using YooAsset;
 
 /// <summary>
 /// 说明：xLua管理类
@@ -25,12 +24,10 @@ public class XLuaManager : MonoSingleton<XLuaManager>
     const string hotfixMainScriptName = "XLua.HotfixMain";
     LuaEnv luaEnv = null;
     LuaUpdater luaUpdater = null;
-
+    
     protected override void Init()
     {
         base.Init();
-        string path = AssetBundleUtility.PackagePathToAssetsPath(luaAssetbundleAssetName);
-        AssetbundleName = AssetBundleUtility.AssetBundlePathToAssetBundleName(path);
         InitLuaEnv();
     }
 
@@ -157,35 +154,16 @@ public class XLuaManager : MonoSingleton<XLuaManager>
 
     public static byte[] CustomLoader(ref string filepath)
     {
-        string scriptPath = string.Empty;
-        filepath = filepath.Replace(".", "/") + ".lua";
-#if UNITY_EDITOR
-        if (AssetBundleConfig.IsEditorMode)
+        if (filepath.Contains("emmy_core"))
         {
-            scriptPath = Path.Combine(Application.dataPath, luaScriptsFolder);
-            scriptPath = Path.Combine(scriptPath, filepath);
-            //Logger.Log("Load lua script : " + scriptPath);
-            return GameUtility.SafeReadAllBytes(scriptPath);
-        }
-#endif
-
-        scriptPath = string.Format("{0}/{1}.bytes", luaAssetbundleAssetName, filepath);
-        string assetbundleName = null;
-        string assetName = null;
-        bool status = AssetBundleManager.Instance.MapAssetPath(scriptPath, out assetbundleName, out assetName);
-        if (!status)
-        {
-            Logger.LogError("MapAssetPath failed : " + scriptPath);
             return null;
         }
-        var asset = AssetBundleManager.Instance.GetAssetCache(assetName) as TextAsset;
-        if (asset != null)
-        {
-            //Logger.Log("Load lua script : " + scriptPath);
-            return asset.bytes;
-        }
-        Logger.LogError("Load lua script failed : " + scriptPath + ", You should preload lua assetbundle first!!!");
-        return null;
+
+        filepath = Define.LUA_Path + filepath.Replace(".", "/") + ".lua";
+
+        byte[] bytes = YooAssets.LoadRawFileSync(filepath).GetRawFileData();
+        //bytes = Decrypt(bytes);   //TODO：解密
+        return bytes;
     }
 
     private void Update()

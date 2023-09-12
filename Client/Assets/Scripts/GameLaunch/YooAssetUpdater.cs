@@ -16,65 +16,17 @@ public class YooAssetUpdater : MonoBehaviour
     
     public EPlayMode PlayMode = EPlayMode.EditorSimulateMode;
 
-    public Transform UIRoot;
-
-    private readonly string packageName = "DefaultPackage";
-    private ResourcePackage package;
+    private readonly string defaultPackageName = "DefaultPackage";
+    private ResourcePackage defaultPackage;
 
     private string packageVersion;
     private ResourceDownloaderOperation downloader;
 
-    private Action _updateCallback;
+    private Action updateCallback;
     
-
     void Start()
     {
         Instance = this;
-    }
-    
-    void GameStart()
-    {
-        StartCoroutine(DoGameStart());
-    }
-
-    IEnumerator DoGameStart()
-    {
-        AssetOperationHandle prefabHandle =
-            package.LoadAssetAsync<GameObject>("Assets/Arts/Prefab/Cube.prefab");
-        yield return prefabHandle;
-        GameObject go = prefabHandle.InstantiateSync(UIRoot);
-        //GameObject go = (GameObject)prefabHandle.AssetObject;
-        //GameObject ins = GameObject.Instantiate(go);
-        
-        prefabHandle.Release();
-        
-        package.UnloadUnusedAssets();
-        
-        yield return 1;
-    }
-
-    void OnLoadSpriteCompleted(AssetOperationHandle handle)
-    {
-        Sprite sprite = (Sprite)handle.AssetObject;
-
-        //UIRoot.GetComponentInChildren<Image>().sprite = sprite;
-    }
-
-    void OnLoadAtlasCompleted(AssetOperationHandle handle)
-    {
-        SpriteAtlas atlas = (SpriteAtlas)handle.AssetObject;
-
-
-        //UIRoot.GetComponentInChildren<Image>().sprite = sprite;
-    }
-
-    void OnLoadCompleted(AssetOperationHandle handle)
-    {
-        GameObject go = handle.InstantiateSync(UIRoot);
-        Debug.Log($"Prefab name is {go.name}");
-
-        //AssetOperationHandle spriteHandle = package.LoadAssetAsync<Sprite>("Assets/Arts/UI/LoginTest/Sprites/main_bottom_icon_shop.png");
-        //spriteHandle.Completed += OnLoadSpriteCompleted;
     }
 
     public IEnumerator Init()
@@ -82,25 +34,25 @@ public class YooAssetUpdater : MonoBehaviour
         YooAssets.Initialize();
         YooAssets.SetOperationSystemMaxTimeSlice(30);
         
-        yield return InitPackage(false);
+        yield return InitPackage();
     }
 
     public void HotUpdate(Action updateCallback)
     {
-        _updateCallback = updateCallback;
+        this.updateCallback = updateCallback;
         StartCoroutine(GetStaticVersion());
     }
 
-    private IEnumerator InitPackage(bool isUpdate)
+    private IEnumerator InitPackage()
     {
         var playMode = PlayMode;
 
         // 创建默认的资源包
-        package = YooAssets.TryGetPackage(packageName);
-        if (package == null)
+        defaultPackage = YooAssets.TryGetPackage(defaultPackageName);
+        if (defaultPackage == null)
         {
-            package = YooAssets.CreatePackage(packageName);
-            YooAssets.SetDefaultPackage(package);
+            defaultPackage = YooAssets.CreatePackage(defaultPackageName);
+            YooAssets.SetDefaultPackage(defaultPackage);
         }
 
         // 编辑器下的模拟模式
@@ -108,8 +60,8 @@ public class YooAssetUpdater : MonoBehaviour
         if (playMode == EPlayMode.EditorSimulateMode)
         {
             var createParameters = new EditorSimulateModeParameters();
-            createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild(packageName);
-            initializationOperation = package.InitializeAsync(createParameters);
+            createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild(defaultPackageName);
+            initializationOperation = defaultPackage.InitializeAsync(createParameters);
         }
 
         // 单机运行模式
@@ -117,7 +69,7 @@ public class YooAssetUpdater : MonoBehaviour
         {
             var createParameters = new OfflinePlayModeParameters();
             createParameters.DecryptionServices = null;
-            initializationOperation = package.InitializeAsync(createParameters);
+            initializationOperation = defaultPackage.InitializeAsync(createParameters);
         }
 
         // 联机运行模式
@@ -128,27 +80,19 @@ public class YooAssetUpdater : MonoBehaviour
             createParameters.QueryServices = null;
             createParameters.DefaultHostServer = GetHostServerURL();
             createParameters.FallbackHostServer = GetHostServerURL();
-            initializationOperation = package.InitializeAsync(createParameters);
+            initializationOperation = defaultPackage.InitializeAsync(createParameters);
         }
 
         yield return initializationOperation;
-        if (package.InitializeStatus == EOperationStatus.Succeed)
-        {
-            //if (isUpdate)
-            //    StartCoroutine(GetStaticVersion());
-            //else
-            //    Debug.LogError("YooAssetSamples  不进行更新，初始化结束！");
-            Debug.Log("YooAssetSamples  初始化成功！");
-        }
+        if (defaultPackage.InitializeStatus == EOperationStatus.Succeed)
+            Debug.Log("资源管理...  defaultPackage初始化完毕！");
         else
-        {
-            Debug.LogError("YooAssetSamples  初始化失败:" + initializationOperation.Error);
-        }
+            Debug.LogError("资源管理...  defaultPackage初始化失败:" + initializationOperation.Error);
     }
 
     private IEnumerator GetStaticVersion()
     {
-        var operation = package.UpdatePackageVersionAsync();
+        var operation = defaultPackage.UpdatePackageVersionAsync();
         yield return operation;
 
         if (operation.Status == EOperationStatus.Succeed)
@@ -158,13 +102,13 @@ public class YooAssetUpdater : MonoBehaviour
         }
         else
         {
-            Debug.LogError("YooAssetSamples  获得版本失败:" + operation.Error);
+            Debug.LogError("资源管理...  获得版本失败:" + operation.Error);
         }
     }
 
     private IEnumerator UpdateManifest()
     {
-        var operation = package.UpdatePackageManifestAsync(packageVersion);
+        var operation = defaultPackage.UpdatePackageManifestAsync(packageVersion);
         yield return operation;
 
         if (operation.Status == EOperationStatus.Succeed)
@@ -175,7 +119,7 @@ public class YooAssetUpdater : MonoBehaviour
         }
         else
         {
-            Debug.LogError("YooAssetSamples  更新Manifest失败:" + operation.Error);
+            Debug.LogError("资源管理...  更新Manifest失败:" + operation.Error);
         }
     }
 
@@ -235,24 +179,21 @@ public class YooAssetUpdater : MonoBehaviour
     public static void OnDownloadErrorCallback(string fileName, string error)
     {
         //下载文件失败
-        Debug.LogError("YooAssetSamples  下载文件失败，文件名:" + fileName + "    失败原因：" + error);
+        Debug.LogError("资源管理...  下载文件失败，文件名:" + fileName + "    失败原因：" + error);
     }
 
     void ClearUnusedCacheFiles()
     {
-        var package = YooAssets.GetPackage("DefaultPackage");
-        var operation = package.ClearUnusedCacheFilesAsync();
+        var operation = defaultPackage.ClearUnusedCacheFilesAsync();
         operation.Completed += OnClearUnusedCacheFilesCompleted;
     }
 
     private void OnClearUnusedCacheFilesCompleted(AsyncOperationBase obj)
     {
-        Debug.Log("没用的文件 清理完毕！");
+        Debug.Log("资源管理... 没用的文件 清理完毕！");
         
-        if (_updateCallback != null)
-            _updateCallback();
-
-        //GameStart();
+        if (updateCallback != null)
+            updateCallback();
     }
 
 

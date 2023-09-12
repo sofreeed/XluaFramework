@@ -23,7 +23,7 @@ MonoBehaviour:
     - GroupName: DefaultPackage
       GroupDesc: 
       AssetTags: 
-      ActiveRuleName: DisableGroup
+      ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/AssetsPackage/Effect/Prefab
         CollectorGUID: c597e3f3abc811b4a9b5e8c2af4ba859
@@ -57,10 +57,18 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
+      - CollectPath: Assets/LuaScripts
+        CollectorGUID: 0ae37a8821c5cc747bbfce45f12a746c
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackRawFile
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
     - GroupName: Test
       GroupDesc: 
       AssetTags: 
-      ActiveRuleName: EnableGroup
+      ActiveRuleName: DisableGroup
       Collectors:
       - CollectPath: Assets/Arts/Prefab
         CollectorGUID: 7cbfb0d521b779a4bbfb1124cde12e83

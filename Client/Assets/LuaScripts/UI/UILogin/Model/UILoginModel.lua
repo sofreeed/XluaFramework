@@ -27,9 +27,9 @@ local function OnEnable(self)
 	-- 密码
 	self.password = nil
 	-- 客户端app版本号
-	self.client_app_ver = nil
+	--self.client_app_ver = nil
 	-- 客户端资源版本号
-	self.client_res_ver = nil
+	--self.client_res_ver = nil
 	-- 区域名
 	self.area_name = nil
 	-- 服务器名
@@ -52,8 +52,8 @@ local function OnRefresh(self)
 	local client_data = ClientData:GetInstance()
 	self.account = client_data.account
 	self.password = client_data.password
-	self.client_app_ver = client_data.app_version
-	self.client_res_ver = client_data.res_version
+	--self.client_app_ver = client_data.app_version
+	--self.client_res_ver = client_data.res_version
 	SetServerInfo(self, client_data.login_server_id)
 end
 
@@ -79,8 +79,8 @@ local function OnDisable(self)
 	-- 清理成员变量
 	self.account = nil
 	self.password = nil
-	self.client_app_ver = nil
-	self.client_res_ver = nil
+	--self.client_app_ver = nil
+	--self.client_res_ver = nil
 	self.area_name = nil
 	self.server_name = nil
 end
