@@ -15,6 +15,7 @@ public class YooAssetUpdater : MonoBehaviour
     public static YooAssetUpdater Instance;
     
     public EPlayMode PlayMode = EPlayMode.EditorSimulateMode;
+    public string AssetServerAddress = "http://127.0.0.1/CDN";
 
     private readonly string defaultPackageName = "DefaultPackage";
     private ResourcePackage defaultPackage;
@@ -78,8 +79,8 @@ public class YooAssetUpdater : MonoBehaviour
             var createParameters = new HostPlayModeParameters();
             createParameters.DecryptionServices = null;
             createParameters.QueryServices = null;
-            createParameters.DefaultHostServer = GetHostServerURL();
-            createParameters.FallbackHostServer = GetHostServerURL();
+            createParameters.DefaultHostServer = GetAssetServerURL();
+            createParameters.FallbackHostServer = GetAssetServerURL();
             initializationOperation = defaultPackage.InitializeAsync(createParameters);
         }
 
@@ -202,30 +203,30 @@ public class YooAssetUpdater : MonoBehaviour
     /// <summary>
     /// 获取资源服务器地址
     /// </summary>
-    private string GetHostServerURL()
+    private string GetAssetServerURL()
     {
-        //string hostServerIP = "http://10.0.2.2"; //安卓模拟器地址
-        string hostServerIP = "http://127.0.0.1";
-        string gameVersion = "v1.0";
+        //TODO:packageVersion 有待验证
+        string gameVersion = packageVersion;    
+        //string gameVersion = "v1.0";
 
 #if UNITY_EDITOR
         if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.Android)
-            return $"{hostServerIP}/CDN/Android/{gameVersion}";
+            return $"{AssetServerAddress}/Android/{gameVersion}";
         else if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.iOS)
-            return $"{hostServerIP}/CDN/IPhone/{gameVersion}";
+            return $"{AssetServerAddress}/IPhone/{gameVersion}";
         else if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.WebGL)
-            return $"{hostServerIP}/CDN/WebGL/{gameVersion}";
+            return $"{AssetServerAddress}/WebGL/{gameVersion}";
         else
-            return $"{hostServerIP}/CDN/PC/{gameVersion}";
+            return $"{AssetServerAddress}/PC/{gameVersion}";
 #else
 		if (Application.platform == RuntimePlatform.Android)
-			return $"{hostServerIP}/CDN/Android/{gameVersion}";
+			return $"{AssetServerAddress}/Android/{gameVersion}";
 		else if (Application.platform == RuntimePlatform.IPhonePlayer)
-			return $"{hostServerIP}/CDN/IPhone/{gameVersion}";
+			return $"{AssetServerAddress}/IPhone/{gameVersion}";
 		else if (Application.platform == RuntimePlatform.WebGLPlayer)
-			return $"{hostServerIP}/CDN/WebGL/{gameVersion}";
+			return $"{AssetServerAddress}/WebGL/{gameVersion}";
 		else
-			return $"{hostServerIP}/CDN/PC/{gameVersion}";
+			return $"{AssetServerAddress}/PC/{gameVersion}";
 #endif
     }
 

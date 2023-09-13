@@ -7,6 +7,8 @@ using YooAsset;
 [LuaCallCSharp]
 public class GameLaunch : MonoBehaviour
 {
+    public static TypeEventSystem EventSystem;
+    
     const string launchPrefabPath = "Assets/AssetsPackage/UI/Prefabs/UILoading/UILoading.prefab";
     const string noticeTipPrefabPath = "Assets/AssetsPackage/UI/Prefabs/Common/UINoticeTip.prefab";
     const string LaunchLayerPath = "UIRoot/TopLayer";
@@ -15,6 +17,8 @@ public class GameLaunch : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = 60;
+        
+        EventSystem = TypeEventSystem.Global;
     }
     
     IEnumerator Start ()
