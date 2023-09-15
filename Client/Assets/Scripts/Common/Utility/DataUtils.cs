@@ -25,27 +25,4 @@ public class DataUtils
         return System.Text.Encoding.Default.GetString(bytes).Trim();
     }
 
-    public static Hashtable HttpGetInfo(string info)
-    {
-        if (string.IsNullOrEmpty(info))
-        {
-            return null;
-        }
-
-        Hashtable table = new Hashtable();
-        string[] paramList = info.Split('&');
-        for (int i = 0; i < paramList.Length; i++)
-        {
-            string[] keyAndValue = paramList[i].Split('=');
-            if (keyAndValue.Length >= 2)
-            {
-                if (!table.ContainsKey(keyAndValue[0]))
-                {
-                    table.Add(keyAndValue[0], keyAndValue[1]);
-                }
-            }
-        }
-
-        return table;
-    }
 }
