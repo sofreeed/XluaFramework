@@ -17,7 +17,7 @@ using YooAsset;
 [LuaCallCSharp]
 public class XLuaManager : MonoSingleton<XLuaManager>
 {
-    public const string luaAssetbundleAssetName = "Lua";
+    public const string luaFileExName = ".lua";
     public const string luaScriptsFolder = "LuaScripts";
     const string commonMainScriptName = "Common.Main";
     const string gameMainScriptName = "GameMain";
@@ -159,7 +159,7 @@ public class XLuaManager : MonoSingleton<XLuaManager>
             return null;
         }
 
-        filepath = Define.LUA_Path + filepath.Replace(".", "/") + ".lua";
+        filepath = Define.LUA_Path + filepath.Replace(".", "/") + luaFileExName;
 
         byte[] bytes = YooAssets.LoadRawFileSync(filepath).GetRawFileData();
         //bytes = Decrypt(bytes);   //TODO：解密

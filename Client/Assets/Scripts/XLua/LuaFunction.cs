@@ -1,22 +1,11 @@
-﻿#if USE_UNI_LUA
-using LuaAPI = UniLua.Lua;
-using RealStatePtr = UniLua.ILuaState;
-using LuaCSFunction = UniLua.CSharpFunctionDelegate;
-#else
-using LuaAPI = XLua.LuaDLL.Lua;
-using RealStatePtr = System.IntPtr;
-using LuaCSFunction = XLua.LuaDLL.lua_CSFunction;
-#endif
-
+﻿using LuaAPI = XLua.LuaDLL.Lua;
 using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// 说明：LuaFunction扩展
 /// 
 /// @by wsh 2017-09-07
 /// </summary>
-
 namespace XLua
 {
     public partial class LuaFunction : LuaBase

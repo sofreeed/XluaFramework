@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using XLua;
+﻿using XLua;
 using System.Collections.Generic;
 using System;
 
