@@ -23,17 +23,6 @@ using XLua;
 
 public static class XLuaHelper
 {
-    // 说明：扩展NGUITools.AddMissingComponent方法
-    public static Component AddMissingComponent(this GameObject go, Type cmpType)
-    {
-        Component comp = go.GetComponent(cmpType);
-        if (comp == null)
-        {
-            comp = go.AddComponent(cmpType);
-        }
-        return comp;
-    }
-
     // 说明：扩展CreateInstance方法
     public static Array CreateArrayInstance(Type itemType, int itemCount)
     {
@@ -60,16 +49,6 @@ public static class XLuaHelper
     public static Delegate CreateActionDelegate(object target, string methodName, params Type[] paramTypes)
     {
         return InnerCreateDelegate(MakeGenericActionType, target, null, methodName, paramTypes);
-    }
-
-    public static Delegate CreateCallbackDelegate(Type type, string methodName, params Type[] paramTypes)
-    {
-        return InnerCreateDelegate(MakeGenericCallbackType, null, type, methodName, paramTypes);
-    }
-
-    public static Delegate CreateCallbackDelegate(object target, string methodName, params Type[] paramTypes)
-    {
-        return InnerCreateDelegate(MakeGenericCallbackType, target, null, methodName, paramTypes);
     }
 
     delegate Type MakeGenericDelegateType(params Type[] paramTypes);
@@ -119,27 +98,6 @@ public static class XLuaHelper
             return typeof(Action<,,,>).MakeGenericType(paramTypes);
         }
     }
-
-    // 说明：构建Callback类型
-    public static Type MakeGenericCallbackType(params Type[] paramTypes)
-    {
-        if (paramTypes == null || paramTypes.Length == 0)
-        {
-            return typeof(Callback);
-        }
-        else if (paramTypes.Length == 1)
-        {
-            return typeof(Callback<>).MakeGenericType(paramTypes);
-        }
-        else if (paramTypes.Length == 2)
-        {
-            return typeof(Callback<,>).MakeGenericType(paramTypes);
-        }
-        else
-        {
-            return typeof(Callback<,,>).MakeGenericType(paramTypes);
-        }
-    }
 }
 
 #if UNITY_EDITOR
@@ -147,14 +105,12 @@ public static class XLuaHelperExporter
 {
     [LuaCallCSharp]
     public static List<Type> LuaCallCSharp = new List<Type>() {
-        // XLuaHelper
         typeof(XLuaHelper),
-        typeof(Component),
         typeof(Array),
         typeof(IList),
         typeof(IDictionary),
-        //typeof(Activator),
-        //typeof(Type),
+        typeof(Activator),
+        typeof(Type),
         typeof(BindingFlags),
     };
 

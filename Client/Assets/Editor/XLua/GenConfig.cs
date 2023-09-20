@@ -108,7 +108,6 @@ public static class GenConfig
 		//typeof(Action<float, float>),
         typeof(Action<int>),
         typeof(Action<WWW>),
-        typeof(Callback),
         typeof(UnityEngine.Event),
         typeof(UnityEngine.Events.UnityAction),
         typeof(System.Collections.IEnumerator),
