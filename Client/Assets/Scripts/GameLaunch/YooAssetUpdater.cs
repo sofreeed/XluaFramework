@@ -25,7 +25,7 @@ public class YooAssetUpdater : MonoBehaviour
 
     private Action updateCallback;
     
-    void Start()
+    void Awake()
     {
         Instance = this;
     }
