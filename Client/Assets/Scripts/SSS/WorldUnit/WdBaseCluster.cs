@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
+public class LodPrefab
+{
+    public LodLevel LodLevel;
+    public GameObject Prefab;
+}
+
 public abstract class WdBaseCluster : BaseWorldUnit
 {
     private List<BaseTownUnit> _townUnits;
@@ -11,6 +17,8 @@ public abstract class WdBaseCluster : BaseWorldUnit
     private float _zoomBeginCameraHeight = 0;
     private float _zoomEndCameraHeight = 0;
     private float _zoomSize = 0;
+
+    private Dictionary<LodLevel, LodPrefab> _lodPrefabs;
 
     public virtual void Init(float x, float y, float zoomBeginCameraHeight, float zoomEndCameraHeight, float zoomSize)
     {
@@ -27,6 +35,7 @@ public abstract class WdBaseCluster : BaseWorldUnit
         if (!_isWorld0)
             return;
 
+        //无极缩放
         foreach (BaseTownUnit tnUnit in _townUnits)
         {
             float currZoomHeight = _zoomBeginCameraHeight - World.Instance.Camera.transform.position.y;
@@ -37,6 +46,8 @@ public abstract class WdBaseCluster : BaseWorldUnit
             
             //TODO：缩放完成后，计算碰撞情况，并显示和隐藏
         }
+        
+        
     }
 
 
@@ -49,6 +60,7 @@ public abstract class WdBaseCluster : BaseWorldUnit
         else
         {
             _isWorld0 = false;
+            //TODO:通过_lodPrefabs设置相关显示
         }
     }
 }

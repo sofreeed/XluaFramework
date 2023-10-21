@@ -26,6 +26,9 @@ public class World : MonoBehaviour
 
     public float perspectiveZoomSpeed = 0.0001f; // The rate of change of the field of view in perspective mode.
 
+    public int GridSizeX = 48;
+    public int GridSizeY = 48;
+    
 
     private Map _map;
     private Dictionary<LodLevel, float> _lodSetting;
@@ -82,5 +85,7 @@ public class World : MonoBehaviour
             zoomCurrent = Mathf.Clamp(zoomCurrent, zoomMin, zoomMax);
             CameraGo.transform.localPosition = new Vector3(0, 0, -zoomCurrent);
         }
+        
+        //TODO:判断当前Lod级别，并通知全部建筑
     }
 }

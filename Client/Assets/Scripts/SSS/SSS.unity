@@ -247,6 +247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 197402379}
     m_Modifications:
+    - target: {fileID: -3292295933138461567, guid: 070c417a6e2ffca43ad56cae1caa4348, type: 3}
+      propertyPath: TileX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 980950818927882612, guid: 070c417a6e2ffca43ad56cae1caa4348, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -527,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -535,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalRotation.w
