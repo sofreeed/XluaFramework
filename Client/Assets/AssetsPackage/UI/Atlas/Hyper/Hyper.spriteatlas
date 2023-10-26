@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hyper
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 876b37ddf29cda540b65faaa3d30fcd2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1179ad2074bfd7a4cbbd3ebe501efdb7, type: 3}
+  - {fileID: 21300000, guid: 1c8d36503085ff140be84af59f59140c, type: 3}
+  - {fileID: 21300000, guid: 583a39c094ea82d449ef1197dfc7909c, type: 3}
+  - {fileID: 21300000, guid: ccd34fc1a0cee2a4895501855b453d2d, type: 3}
+  - {fileID: 21300000, guid: 80cc1c82dd60c644793057f35b7bdc84, type: 3}
+  - {fileID: 21300000, guid: 76c667b2b6dca2e40a58e72463107c4c, type: 3}
+  - {fileID: 21300000, guid: 6552d273c2d2c284b9014e5d13289783, type: 3}
+  - {fileID: 21300000, guid: f0fa03f37690de142b2fc91fa4b75376, type: 3}
+  - {fileID: 21300000, guid: 4653a714cbde93d43a8b77060d29ff9a, type: 3}
+  - {fileID: 21300000, guid: 47d99c24752f7f943a66d89b87917e1b, type: 3}
+  - {fileID: 21300000, guid: 25e9b854a81cbdc4781b87348eea1a07, type: 3}
+  - {fileID: 21300000, guid: 6a66b6b669ddd264b8bff290e8de4c72, type: 3}
+  - {fileID: 21300000, guid: a81d71c66cb54b84e9805d9f90790ce0, type: 3}
+  - {fileID: 21300000, guid: 8ed866c607ce6b346a28a029833e23a8, type: 3}
+  - {fileID: 21300000, guid: b93f1837945e5e945827415813b1d2b5, type: 3}
+  - {fileID: 21300000, guid: 38986a48ee8445842893c6dc480cdc7e, type: 3}
+  - {fileID: 21300000, guid: 29ad8fe8b3415e84c85a95261ba1a9b1, type: 3}
+  - {fileID: 21300000, guid: 01b5b32aa76d14448970a859335280c4, type: 3}
+  - {fileID: 21300000, guid: 0f49553b86d76a74da31a8be9b67d4c2, type: 3}
+  - {fileID: 21300000, guid: 560ea96c4aa1ff44e970027f48aff372, type: 3}
+  - {fileID: 21300000, guid: 5ae8c4ac87bef24459cdca4de449bc90, type: 3}
+  - {fileID: 21300000, guid: 2178f4cc8de792c4488c606ad6f9c0eb, type: 3}
+  - {fileID: 21300000, guid: 4354bbfc8bfa7e3489155822b85c971c, type: 3}
+  - {fileID: 21300000, guid: 1f87088d314293e4c84c14beb3645e65, type: 3}
+  - {fileID: 21300000, guid: 87df22dd4c3498941be03e71b09c2084, type: 3}
+  - {fileID: 21300000, guid: f6c8ec5fde53f464e939288a01634e40, type: 3}
+  - {fileID: 21300000, guid: 425e5d7fa8cae864eb1d9cac3c30b67a, type: 3}
+  - {fileID: 21300000, guid: 83528fbf1099ee04ebc55682cf777e4b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_hyper_emoji_01_2
+  - ui_hyper_acer
+  - ui_hyper_emoji_02_2
+  - ui_hyper_exp
+  - ui_hyper_chat_haoyou
+  - ui_hyper_career_03
+  - ui_hyper_chat_duiwu
+  - ui_hyper_career_06
+  - ui_hyper_book
+  - ui_hyper_career_01
+  - ui_hyper_money_03
+  - ui_hyper_money_02
+  - ui_hyper_emoji_01_1
+  - ui_hyper_chat_shijie
+  - ui_hyper_emoji_02_1
+  - ui_hyper_money_01
+  - ui_hyper_career_05
+  - ui_hyper_petexp
+  - ui_hyper_career_02
+  - ui_hyper_emoji_03_1
+  - ui_hyper_emoji_03_2
+  - ui_hyper_chat_bangpai
+  - ui_hyper_chat_xitong
+  - ui_hyper_copper
+  - ui_hyper_chat_xiaoxi
+  - ui_hyper_note
+  - ui_hyper_career_04
+  - ui_hyper_chat_dangqian
+  m_RenderDataMap: {}
+  m_Tag: Hyper
+  m_IsVariant: 0

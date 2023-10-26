@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Role
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: fbb2cf6d795fa3944858da3edfed7e18, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a6241fc01e166ed49b2fdcaf162e86ff, type: 3}
+  - {fileID: 21300000, guid: acd038215b14d8e4a827a22b1af6ff08, type: 3}
+  - {fileID: 21300000, guid: e6438d31fe321c74cbb21348e8cdce89, type: 3}
+  - {fileID: 21300000, guid: 4577177152f49db409272486de02abad, type: 3}
+  - {fileID: 21300000, guid: c0bf7ad1cfe05ae4fbc53befe24b26e1, type: 3}
+  - {fileID: 21300000, guid: c09e1ed1784467d4dacbd752d66bdc3f, type: 3}
+  - {fileID: 21300000, guid: 9288ca129f4fdac4281b159b4597189e, type: 3}
+  - {fileID: 21300000, guid: 8ebd3523f996b7541a7e1f54a36ceb11, type: 3}
+  - {fileID: 21300000, guid: f0b49363e6fd5db4297b6799a9e055ba, type: 3}
+  - {fileID: 21300000, guid: 6bb862a3a182903479ec247a790105fb, type: 3}
+  - {fileID: 21300000, guid: 88b8bca329891264697601cbfa68541c, type: 3}
+  - {fileID: 21300000, guid: 9d95edc3d9bd02749b009d90d1b251bb, type: 3}
+  - {fileID: 21300000, guid: c2ec9fd3cd6aff3408ca4cce18809fb3, type: 3}
+  - {fileID: 21300000, guid: f81c5c743c904e5499e42f3756cedaa4, type: 3}
+  - {fileID: 21300000, guid: fd64821665091504a959ff04b3670ae4, type: 3}
+  - {fileID: 21300000, guid: 0ca61c865ff260642b40f8e8593168aa, type: 3}
+  - {fileID: 21300000, guid: 53cbb1a6d1c39454293cbbcfa6f19d06, type: 3}
+  - {fileID: 21300000, guid: 2ad107a6d44d6874aa66d2410bb95a64, type: 3}
+  - {fileID: 21300000, guid: 4245c0b654145e84bb13153e7a1855c2, type: 3}
+  - {fileID: 21300000, guid: f04ff8c61c8ba5d43bf42f8e3589b7c7, type: 3}
+  - {fileID: 21300000, guid: 2927ee188908cec48b4e7f054f762268, type: 3}
+  - {fileID: 21300000, guid: f6953d48b26c29a489d64f58cb5300b9, type: 3}
+  - {fileID: 21300000, guid: e9f4d62927b238e49b66af35ebb7a538, type: 3}
+  - {fileID: 21300000, guid: 2c4023b90adb3e4438d50516b2f267fc, type: 3}
+  - {fileID: 21300000, guid: 9df9b4e950fa0c347aec59e49cfd0932, type: 3}
+  - {fileID: 21300000, guid: 54173aba7ff515a4da2fa342c9ba760e, type: 3}
+  - {fileID: 21300000, guid: d7a9e86b30b68794c9471bc5dbe214ad, type: 3}
+  - {fileID: 21300000, guid: 2987a63c8000182418cb89f55b6fa1dd, type: 3}
+  - {fileID: 21300000, guid: 4bf8339d7618e534f85fc9cf18a9651e, type: 3}
+  - {fileID: 21300000, guid: bb8c60cd0d2b1a84aae0d1fb94ae1c90, type: 3}
+  - {fileID: 21300000, guid: 8ea767cd97568bc46bf0232862b3aed8, type: 3}
+  - {fileID: 21300000, guid: aab7913ed4d2af74e8a58e0b59da5059, type: 3}
+  - {fileID: 21300000, guid: df9bac4e6e6984b419ec020da79db07f, type: 3}
+  - {fileID: 21300000, guid: d18e3bef842b3f0439f373568b4bf02a, type: 3}
+  - {fileID: 21300000, guid: 19f0eeffce81e9a4da52b866fca7df68, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_role_60
+  - ui_role_66
+  - ui_role_65
+  - ui_role_27
+  - ui_role_64
+  - ui_role_59
+  - ui_role_28
+  - ui_role_10
+  - ui_role_02
+  - ui_role_57
+  - ui_role_36
+  - ui_role_29
+  - ui_role_52
+  - ui_role_56
+  - ui_role_09
+  - ui_role_34
+  - ui_role_46
+  - ui_role_49
+  - ui_role_24
+  - ui_role_31
+  - ui_role_62
+  - ui_role_33
+  - ui_role_61
+  - ui_role_54
+  - ui_role_32
+  - ui_role_35
+  - ui_role_53
+  - ui_role_45
+  - ui_role_51
+  - ui_role_30
+  - ui_role_55
+  - ui_role_25
+  - ui_role_58
+  - ui_role_26
+  - ui_role_03
+  m_RenderDataMap: {}
+  m_Tag: Role
+  m_IsVariant: 0
