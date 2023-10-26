@@ -8,6 +8,6 @@ local Config = Config or {}
 -- 调试模式：真机出包时关闭
 Config.Debug = true
 -- AssetBundle
-Config.UseAssetBundle = false
+-- Config.UseAssetBundle = false
 
 return Config

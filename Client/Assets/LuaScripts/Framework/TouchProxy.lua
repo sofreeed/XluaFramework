@@ -144,7 +144,7 @@ function M.UnregisterEvent(listener, event)
 		end
 	elseif event == TouchType.Drag then
 		if dragEventMaps[key] then
-			downEventMaps[key] = nil;
+			dragEventMaps[key] = nil;
 		end
 	elseif event == TouchType.DragEnd then
 		if dragEndEventMaps[key] then
