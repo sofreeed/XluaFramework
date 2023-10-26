@@ -27,18 +27,28 @@ local function InitInst(inst)
 	end
 end
 
--- 检测是否已经被缓存
-local function CheckHasCached(self, path)
+-- 检测是否已经被缓存，如果inst_count>0需要判断个数
+local function CheckHasCached(self, path, inst_count)
 	assert(path ~= nil and type(path) == "string" and #path > 0, "path err : "..path)
 	assert(string.endswith(path, ".prefab", true), "GameObject must be prefab : "..path)
+    assert(inst_count == nil or type(inst_count) == "number" and inst_count >= 0)
+
+	--增加个数的判断
+    if inst_count == nil then
+        local cachedInst = __instCache[path]
+        if cachedInst ~= nil and table.length(cachedInst) > 0 then
+            return true
+        end
+
+        local pooledGo = __goPool[path]
+        return not IsNull(pooledGo)
+    else
+        local cachedInst = __instCache[path]
+        if cachedInst ~= nil and table.length(cachedInst) > inst_count then
+            return true
+        end
+    end
 	
-	local cachedInst = __instCache[path]
-	if cachedInst ~= nil and table.length(cachedInst) > 0 then
-		return true
-	end
-	
-	local pooledGo = __goPool[path]
-	return not IsNull(pooledGo)
 end
 
 -- 缓存并实例化GameObject
@@ -72,11 +82,12 @@ local function TryGetFromCache(self, path)
 		return inst
 	end
 	
-	local pooledGo = __goPool[path]
-	if not IsNull(pooledGo) then
-		local inst = CS.UnityEngine.GameObject.Instantiate(pooledGo)
-		return inst
-	end
+	--__goPool存的gameobj不能算实例
+	--local pooledGo = __goPool[path]
+	--if not IsNull(pooledGo) then
+	--	local inst = CS.UnityEngine.GameObject.Instantiate(pooledGo)
+	--	return inst
+	--end
 	
 	return nil
 end
@@ -84,7 +95,7 @@ end
 -- 预加载：可提供初始实例化个数
 local function PreLoadGameObjectAsync(self, path, inst_count, callback, ...)
 	assert(inst_count == nil or type(inst_count) == "number" and inst_count >= 0)
-	if self:CheckHasCached(path) then
+	if self:CheckHasCached(path, inst_count) then
 		if callback then
 			callback(...)
 		end
@@ -94,6 +105,11 @@ local function PreLoadGameObjectAsync(self, path, inst_count, callback, ...)
 	local args = SafePack(...)
 	ResourcesManager:GetInstance():LoadAsync(path, typeof(CS.UnityEngine.GameObject), function(go)
 		if not IsNull(go) then
+			--只把池子里差的实例创建出来
+			local cachedInst = __instCache[path]
+			if cachedInst ~= nil and table.length(cachedInst) < inst_count then
+				inst_count = inst_count - table.length(cachedInst);
+			end
 			CacheAndInstGameObject(self, path, go, inst_count)
 		end
 		
