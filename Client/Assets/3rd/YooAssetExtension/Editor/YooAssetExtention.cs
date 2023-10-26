@@ -17,5 +17,13 @@ public class YooAssetExtention
         {
             return true;
         }
+        
+        public class CollectAtlas : IFilterRule
+        {
+            public bool IsCollectAsset(FilterRuleData data)
+            {
+                return Path.GetExtension(data.AssetPath) == ".spriteatlas";
+            }
+        }
     }
 }

@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: -1.99
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -539,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.02
+      value: -4.33
       objectReference: {fileID: 0}
     - target: {fileID: 8515836299627635743, guid: d1391f71e15658948a2523ead23034c6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -610,6 +610,8 @@ MonoBehaviour:
   CameraGo: {fileID: 288421648}
   Camera: {fileID: 288421650}
   perspectiveZoomSpeed: 0.0001
+  GridSizeX: 48
+  GridSizeY: 48
 --- !u!4 &1783611197
 Transform:
   m_ObjectHideFlags: 0

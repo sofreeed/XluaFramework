@@ -78,7 +78,7 @@ public class YooAssetUpdater : MonoBehaviour
         {
             var createParameters = new HostPlayModeParameters();
             createParameters.DecryptionServices = null;
-            createParameters.QueryServices = null;
+            //createParameters.QueryServices = null;
             createParameters.DefaultHostServer = GetAssetServerURL();
             createParameters.FallbackHostServer = GetAssetServerURL();
             initializationOperation = defaultPackage.InitializeAsync(createParameters);
