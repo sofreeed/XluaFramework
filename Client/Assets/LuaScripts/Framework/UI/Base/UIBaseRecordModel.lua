@@ -37,7 +37,7 @@ local function ClearWindowStack(self)
 	self.__window_stack = {}
 end
 
--- 子级窗口入栈
+-- 子级窗口入栈，TODO：怎么判断的这就是子窗口？？？？？
 local function OnWindowOpen(self, window)
 	if not self.__enable_record or window.Layer:GetName() ~= UILayers.NormalLayer.Name then
 		return

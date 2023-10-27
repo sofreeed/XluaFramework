@@ -10,6 +10,11 @@
 -- 6、界面Model层数据只影响UI，不影响游戏逻辑，游戏逻辑不能从Model层取数据，意思是没有界面，游戏依旧能跑
 --]]
 
+--[[
+-- Model可以注册UI和Data的消息
+-- Model只能广播UI消息
+--]]
+
 local UIBaseModel = BaseClass("UIBaseModel")
 
 -- 如非必要，别重写构造函数，使用OnCreate初始化

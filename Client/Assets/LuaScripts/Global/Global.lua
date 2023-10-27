@@ -20,6 +20,8 @@ Config = require "Global.Config"
 Singleton = require "Framework.Common.Singleton"
 Updatable = require "Framework.Common.Updatable"
 UpdatableSingleton = require "Framework.Common.UpdatableSingleton"
+Fsm = require "Framework.Fsm"
+LayerIndex = require "Framework.LayerIndex"
 SortingLayerNames = require "Global.SortingLayerNames"
 Logger = require "Framework.Logger.Logger"
 require "Framework.Updater.Coroutine"
@@ -68,7 +70,6 @@ UIPointerClick = require "Framework.UI.Component.UIPointerClick"
 UIPointerDownUp = require "Framework.UI.Component.UIPointerDownUp"
 UIPointerLongPress = require "Framework.UI.Component.UIPointerLongPress"
 UIPointerDoubleClick = require "Framework.UI.Component.UIPointerDoubleClick"
-
 
 -- ui window
 UILayers = require "Framework.UI.UILayers"
