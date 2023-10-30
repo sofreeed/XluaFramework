@@ -7,12 +7,26 @@ public class TmpTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //int[] array = { 2, 3, 1, 2, 4, 3 };
-        //MinSubArrayLen(7, array);
-
-        GenerateMatrix(3);
     }
 
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public ListNode RemoveElements(ListNode head, int val)
+    {
+        return null;
+    }
+
+    //螺旋数组
     public int[][] GenerateMatrix(int n)
     {
         int[][] array = new int[n][];
@@ -90,6 +104,7 @@ public class TmpTest : MonoBehaviour
         return array;
     }
 
+    //长度最小子数组
     public int MinSubArrayLen(int target, int[] nums)
     {
         int minCount = int.MaxValue;

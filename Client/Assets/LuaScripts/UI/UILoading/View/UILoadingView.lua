@@ -11,7 +11,7 @@ local loading_text_path = "ContentRoot/LoadingDesc"
 local loading_slider_path = "ContentRoot/SliderBar"
 
 local function __init(self, holder, name, model, ctrl)
-	base.__init(self, holder, name, model, ctrl)
+	--base.__init(self, holder, name, model, ctrl)
 	
 	self.gameObject=CS.UILauncher.Instance.UIGameObject;
     self.transform=self.gameObject.transform;
