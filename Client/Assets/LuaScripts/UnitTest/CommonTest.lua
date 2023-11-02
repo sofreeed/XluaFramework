@@ -39,9 +39,9 @@ local function OriginalPackTest(...)
     end
 
     --这种情况会错，结果 --> nil 1 nil nil nil
-    --local a1, b1, c1, d1, e1 = table.unpack(tab);
+    local a1, b1, c1, d1, e1 = table.unpack(tab);
     --正确，结果 --> nil,1,nil,3,nil
-    local a1, b1, c1, d1, e1 = table.unpack(tab, 1, tab.n);
+    local a2, b2, c2, d2, e2 = table.unpack(tab, 1, tab.n);
 end
 
 local function StringAndByte()

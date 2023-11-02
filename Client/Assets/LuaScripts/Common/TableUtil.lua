@@ -16,7 +16,7 @@ local function count(hashtable)
 	return count
 end
 
--- 计算数据长度
+-- 计算数组长度
 local function length(array)
 	if array.n ~= nil then
 		return array.n
