@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayableGraphVisualiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayableGraphVisualizer", "Unity.PlayableGraphVisualizer.csproj", "{89d1adad-b715-11cf-e32f-29a049ebab51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luban.Runtime", "Luban.Runtime.csproj", "{318e8633-0719-9d21-9bf8-477c096e7275}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{9cf74455-0653-9f90-c855-53d6959d5dfd}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YooAsset.Editor", "YooAsset.Editor.csproj", "{8b0eb05a-e832-3f7b-463f-6bed0d05859a}"
@@ -46,6 +48,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIEffect-Editor", "UIEffect-Editor.csproj", "{aa696aac-aa88-e10a-868b-10e49d1eae2e}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayableGraphVisualizer.Editor", "Unity.PlayableGraphVisualizer.Editor.csproj", "{c7dd5438-0666-8072-59bc-907fc3c55ca4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luban.Editor", "Luban.Editor.csproj", "{1c53678d-596a-b136-1ac4-a6cd8d03eee8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{8e399d07-fc4a-7ecd-7881-f923d075ebd1}"
 EndProject
@@ -90,6 +94,8 @@ Global
 		{a4a5add1-3847-8bf5-bfc6-4d4c79acd157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89d1adad-b715-11cf-e32f-29a049ebab51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89d1adad-b715-11cf-e32f-29a049ebab51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318e8633-0719-9d21-9bf8-477c096e7275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318e8633-0719-9d21-9bf8-477c096e7275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9cf74455-0653-9f90-c855-53d6959d5dfd}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9cf74455-0653-9f90-c855-53d6959d5dfd}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8b0eb05a-e832-3f7b-463f-6bed0d05859a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -100,6 +106,8 @@ Global
 		{aa696aac-aa88-e10a-868b-10e49d1eae2e}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{c7dd5438-0666-8072-59bc-907fc3c55ca4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{c7dd5438-0666-8072-59bc-907fc3c55ca4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1c53678d-596a-b136-1ac4-a6cd8d03eee8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1c53678d-596a-b136-1ac4-a6cd8d03eee8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8e399d07-fc4a-7ecd-7881-f923d075ebd1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8e399d07-fc4a-7ecd-7881-f923d075ebd1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

@@ -107,6 +107,9 @@ EffectManager = require "Framework.Resource.Effect.EffectManager"
 -- net
 HallConnector = require "Net.Connector.HallConnector"
 
+ExlDataManager =  require "Luban.ExlDataManager"
+ExlDataManager.Start();
+
 -- 单例类初始化
 UIManager:GetInstance()
 DataManager:GetInstance()
