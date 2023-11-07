@@ -5,8 +5,8 @@ set CONF_ROOT=%WORKSPACE%\MiniTemplate
 
 dotnet %LUBAN_DLL% ^
     -t all ^
-    -c lua-bin ^
-    -d bin  ^
+    -c lua-lua ^
+    -d lua  ^
     --conf %CONF_ROOT%\luban.conf ^
     -x outputCodeDir=Assets\LuaScripts\Luban\Gen ^
     -x outputDataDir=Assets\LuaScripts\Luban\bytes ^

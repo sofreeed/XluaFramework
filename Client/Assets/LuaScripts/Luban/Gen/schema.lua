@@ -7,31 +7,6 @@
 -- </auto-generated>
 --]]------------------------------------------------------------------------------
 
-local setmetatable = setmetatable
-local pairs = pairs
-local ipairs = ipairs
-local tinsert = table.insert
-
-local function SimpleClass()
-    local class = {}
-    class.__index = class
-    class.New = function(...)
-        local ctor = class.ctor
-        local o = ctor and ctor(...) or {}
-        setmetatable(o, class)
-        return o
-    end
-    return class
-end
-
-
-local function get_map_size(m)
-    local n = 0
-    for _ in pairs(m) do
-        n = n + 1
-    end
-    return n
-end
 
 local enums =
 {
@@ -50,142 +25,40 @@ local enums =
     ['test.AccessFlag'] = {   WRITE=1,  READ=2,  TRUNCATE=4,  NEW=8,  READ_WRITE=3,  };
 }
 
+local beans = {}
+    do
+    ---@class Item 
+     ---@field public id integer @这是id
+     ---@field public name string @名字
+     ---@field public price integer @价格
+     ---@field public upgrade_to_item_id integer @引用当前表
+     ---@field public expire_time integer @过期时间
+     ---@field public exchange_column item.ItemExchange @道具兑换配置
+        local class = {
+            { name='id', type='integer'},
+            { name='name', type='string'},
+            { name='price', type='integer'},
+            { name='upgrade_to_item_id', type='integer'},
+            { name='expire_time', type='integer'},
+            { name='exchange_column', type='item.ItemExchange'},
+        }
+        beans['Item'] = class
+    end
+    do
+    ---@class item.ItemExchange 
+     ---@field public id integer @道具id
+     ---@field public num integer @道具数量
+        local class = {
+            { name='id', type='integer'},
+            { name='num', type='integer'},
+        }
+        beans['item.ItemExchange'] = class
+    end
+
 local tables =
 {
     { name='TbItem', file='item_tbitem', mode='map', index='id', value_type='Item' },
 }
 
-local function InitTypes(methods)
-    local readBool = methods.readBool
-    local readByte = methods.readByte
-    local readShort = methods.readShort
-    local readFshort = methods.readFshort
-    local readInt = methods.readInt
-    local readFint = methods.readFint
-    local readLong = methods.readLong
-    local readFlong = methods.readFlong
-    local readFloat = methods.readFloat
-    local readDouble = methods.readDouble
-    local readSize = methods.readSize
-
-    local readString = methods.readString
-
-    local function readList(bs, keyFun)
-        local list = {}
-        local v
-        for i = 1, readSize(bs) do
-            tinsert(list, keyFun(bs))
-        end
-        return list
-    end
-
-    local readArray = readList
-
-    local function readSet(bs, keyFun)
-        local set = {}
-        local v
-        for i = 1, readSize(bs) do
-            tinsert(set, keyFun(bs))
-        end
-        return set
-    end
-
-    local function readMap(bs, keyFun, valueFun)
-        local map = {}
-        for i = 1, readSize(bs) do
-            local k = keyFun(bs)
-            local v = valueFun(bs)
-            map[k] = v
-        end
-        return map
-    end
-
-    local function readNullableBool(bs)
-        if readBool(bs) then
-            return readBool(bs)
-        end
-    end
-    
-    local beans = {}
-        do
-        ---@class Item 
-         ---@field public id integer @这是id
-         ---@field public name string @名字
-         ---@field public price integer @价格
-         ---@field public upgrade_to_item_id integer @引用当前表
-         ---@field public expire_time integer @过期时间
-         ---@field public exchange_column item.ItemExchange @道具兑换配置
-            local class = {
-                { name='id', type='integer'},
-                { name='name', type='string'},
-                { name='price', type='integer'},
-                { name='upgrade_to_item_id', type='integer'},
-                { name='expire_time', type='integer'},
-                { name='exchange_column', type='item.ItemExchange'},
-            }
-            beans['Item'] = class
-        end
-        do
-        ---@class item.ItemExchange 
-         ---@field public id integer @道具id
-         ---@field public num integer @道具数量
-            local class = {
-                { name='id', type='integer'},
-                { name='num', type='integer'},
-            }
-            beans['item.ItemExchange'] = class
-        end
-    
-    local beans = {}
-    do
-    ---@class Item 
-         ---@field public id integer
-         ---@field public name string
-         ---@field public price integer
-         ---@field public upgrade_to_item_id integer
-         ---@field public expire_time integer
-         ---@field public exchange_column item.ItemExchange
-        local class = SimpleClass()
-        class._id = 2289459
-        class._type_ = 'Item'
-        local id2name = {  }
-        class._deserialize = function(bs)
-            local o = {
-            id = readInt(bs),
-            name = readString(bs),
-            price = readInt(bs),
-            upgrade_to_item_id = readInt(bs),
-            expire_time = readBool(bs) and readLong(bs) or nil,
-            exchange_column = beans['item.ItemExchange']._deserialize(bs),
-            }
-            setmetatable(o, class)
-            return o
-        end
-        beans[class._type_] = class
-    end
-    do
-    ---@class item.ItemExchange 
-         ---@field public id integer
-         ---@field public num integer
-        local class = SimpleClass()
-        class._id = 1814660465
-        class._type_ = 'item.ItemExchange'
-        local id2name = {  }
-        class._deserialize = function(bs)
-            local o = {
-            id = readInt(bs),
-            num = readInt(bs),
-            }
-            setmetatable(o, class)
-            return o
-        end
-        beans[class._type_] = class
-    end
-
-
-    return { enums = enums, beans = beans, tables = tables }
-    end
-
-return { InitTypes = InitTypes }
-
+return { enums = enums, beans = beans, tables = tables }
 

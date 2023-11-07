@@ -9,5 +9,6 @@ local Config = Config or {}
 Config.Debug = true
 -- AssetBundle
 -- Config.UseAssetBundle = false
+Config.byteData = false
 
 return Config

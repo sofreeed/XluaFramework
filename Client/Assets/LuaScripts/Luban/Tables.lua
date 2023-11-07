@@ -124,6 +124,34 @@ function Load(typeDefs, configFileloader)
     end
 end
 
+---@param configPath string
+---@param configFileloader function
+function LoadLua(typeDefs, configFileloader)
+
+    enumDefs = typeDefs.enums
+    constDefs = typeDefs.consts
+
+    local tableDefs = typeDefs.tables
+    local beanDefs = typeDefs.beans
+    for _, t in pairs(tableDefs) do
+        --local valueType = beanDefs[t.value_type]
+        --local mode = t.mode
+
+        local tableDatas = require("Luban.bytes." .. t.file)
+
+        --if mode == "map" then
+        --    tableDatas = require("Luban.bytes." .. t.file)
+        --elseif mode == "list" then
+        --    tableDatas = require("Luban.bytes." .. t.file)
+        --else
+        --    tableDatas = require("Luban.bytes." .. t.file)
+        --end
+
+        print(ttostring(tableDatas))
+        tables[t.name] = tableDatas
+    end
+end
+
 ---@param typeName string
 ---@param key string
 function GetEnum(typeName, key)
@@ -149,11 +177,15 @@ end
 
 
 
-function C.Start()
-    local cfgTypeDefs = require("Luban.Gen.schema").InitTypes(byteBufFuns)
-    Load(cfgTypeDefs)
+function C.Start(loadBytes)
+    if loadBytes then
+        local cfgTypeDefs = require("Luban.Gen.schema").InitTypes(byteBufFuns)
+        Load(cfgTypeDefs)
+    else
+        local cfgTypeDefs = require("Luban.Gen.schema")
+        LoadLua(cfgTypeDefs);
+    end
 end
 
-
-
+    
 return C
