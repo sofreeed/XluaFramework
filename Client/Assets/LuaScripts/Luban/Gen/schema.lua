@@ -54,10 +54,21 @@ local beans = {}
         }
         beans['item.ItemExchange'] = class
     end
+    do
+    ---@class Config 
+     ---@field public max_level integer @最大等级
+     ---@field public publish_area string @发行地区
+        local class = {
+            { name='max_level', type='integer'},
+            { name='publish_area', type='string'},
+        }
+        beans['Config'] = class
+    end
 
 local tables =
 {
-    { name='TbItem', file='item_tbitem', mode='map', index='id', value_type='Item' },
+    { name='TbItem', file='tbitem', mode='map', index='id', value_type='Item' },
+    { name='TbConfig', file='tbconfig', mode='one', value_type='Config'},
 }
 
 return { enums = enums, beans = beans, tables = tables }
