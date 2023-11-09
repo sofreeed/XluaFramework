@@ -5,12 +5,9 @@ set CONF_ROOT=%WORKSPACE%\MiniTemplate
 
 dotnet %LUBAN_DLL% ^
     -t all ^
-    -c lua-lua ^
-    -d lua  ^
+    -d text-list  ^
     --conf %CONF_ROOT%\luban.conf ^
-    -x outputCodeDir=Assets\LuaScripts\Luban\Gen ^
-    -x outputDataDir=Assets\LuaScripts\Luban\bytes ^
-    -x pathValidator.rootDir=%WORKSPACE%\Projects\Csharp_Unity_bin ^
-    -x l10n.textProviderFile=*@%WORKSPACE%\DataTables\Datas\l10n\texts.json
+    -x outputDataDir=%CONF_ROOT%\out ^
+    -x l10n.textProviderFile=*@%CONF_ROOT%\l10n-texts.json
 
 pause
