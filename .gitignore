@@ -7,6 +7,9 @@ Client/Sandbox/
 Client/bundles/
 Client/Assets/StreamingAssets/
 
+Client/Assets/LuaScripts/Luban/bytes/
+Client/Assets/LuaScripts/Luban/Gen/
+Client/Assets/LuaScripts/.idea/
 
 Client/Assets/FR2_Cache.*
 Client/Assets/Xlua/Gen/
