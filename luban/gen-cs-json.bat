@@ -11,6 +11,6 @@ dotnet %LUBAN_DLL% ^
     -x outputCodeDir=..\Client\Assets\LuaScripts\Luban\Gen ^
     -x outputDataDir=..\Client\Assets\LuaScripts\Luban\bytes ^
     -x pathValidator.rootDir=%WORKSPACE%\Projects\Csharp_Unity_bin ^
-    -x l10n.textProviderFile=*@%CONF_ROOT%\l10n-texts.json
+    -x l10n.textProviderFile=*@%CONF_ROOT%\l10n.json
 
 pause

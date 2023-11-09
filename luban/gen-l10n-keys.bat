@@ -9,6 +9,6 @@ dotnet %LUBAN_DLL% ^
     --conf %CONF_ROOT%\luban.conf ^
     -x outputDataDir=%CONF_ROOT%\l10nOutput ^
 	-x l10n.textListFile=keylist.txt ^
-    -x l10n.textProviderFile=*@%CONF_ROOT%\l10n-texts.json
+    -x l10n.textProviderFile=*@%CONF_ROOT%\l10n.json
 
 pause
