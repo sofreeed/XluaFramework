@@ -107,6 +107,7 @@ EffectManager = require "Framework.Resource.Effect.EffectManager"
 -- net
 HallConnector = require "Net.Connector.HallConnector"
 
+--加载数据表
 Tables =  require "Luban.Tables"
 Tables.Start(Config.byteData);
 
