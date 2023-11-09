@@ -166,6 +166,7 @@ function GetConst(typeName, field)
     return field and def[field] or constDefs
 end
 
+---@param tableName string
 function GetData(tableName, key1, key2)
     local tableDatas = tables[tableName]
     if not key1 then
@@ -174,8 +175,6 @@ function GetData(tableName, key1, key2)
     local value1 = tableDatas[key1]
     return key2 and value1[key2] or value1
 end
-
-
 
 function C.Start(loadBytes)
     if loadBytes then
