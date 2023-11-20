@@ -205,6 +205,7 @@ local function InnerCloseWindow(self, target)
 end
 
 -- 打开窗口：公有
+---@param self UIManager
 local function OpenWindow(self, ui_name, ...)
 	local target = self:GetWindow(ui_name)
 	if not target then
@@ -221,6 +222,8 @@ local function OpenWindow(self, ui_name, ...)
 	local layer = UIConfig[ui_name].Layer
 	if layer == UILayers.BackgroudLayer then
 		local bg_index = self:GetLastBgWindowIndexInWindowStack()
+		--新打开的界面不是BackgroudLayer层最上面的那个就进栈
+		--TODO：这里的逻辑看不明白，不知道什么时候会有把大量面板都重新打开一遍。等待重写。
 		if bg_index == -1 or self.__window_stack[bg_index] ~= target.Name then
 			self:AddToWindowStack(target.Name)
 		else
@@ -441,7 +444,7 @@ local function PopWindowStack(self)
 	local end_index = table.count(self.__window_stack)
 	for i = bg_index + 1, end_index  do
 		local ui_name = self.__window_stack[i]
-		UIManager:GetInstance():OpenWindow(ui_name)
+		self:OpenWindow(ui_name)
 	end
 	self.__enable_record = true
 end
