@@ -80,11 +80,14 @@ public class ByteBuffer
     public void WriteString(string v)
     {
         byte[] bytes = Encoding.UTF8.GetBytes(v);
+        writer.Write((ushort)bytes.Length);
         writer.Write(bytes);
     }
 
     public void WriteBytes(byte[] v)
     {
+        //Debug.Log("WriteBytes with uint 16 len" + v.Length);
+        writer.WriteInt(v.Length);
         writer.Write(v);
     }
 
@@ -124,7 +127,7 @@ public class ByteBuffer
 
     public string ReadString()
     {
-        int len = (int)(stream.Length - stream.Position);
+        ushort len = ReadShort();
         byte[] buffer = new byte[len];
         buffer = reader.ReadBytes(len);
         return Encoding.UTF8.GetString(buffer);
@@ -132,7 +135,12 @@ public class ByteBuffer
 
     public byte[] ReadBytes()
     {
-        int len = (int)(stream.Length - stream.Position);
+        int len = ReadInt();
+        return reader.ReadBytes(len);
+    }
+
+    public byte[] ReadBytes(int len)
+    {
         return reader.ReadBytes(len);
     }
 
