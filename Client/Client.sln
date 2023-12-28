@@ -15,11 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animancer", "Animancer.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coffee.UIParticle", "Coffee.UIParticle.csproj", "{92a152db-4ad1-64d7-7e31-575f9de80204}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pool", "Pool.csproj", "{b4592495-c8db-02de-1739-696cfe9efbaf}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMachine", "UniMachine.csproj", "{3b7c9a9f-ef96-cc8f-03ea-5b424e935578}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton.csproj", "{bd9d57b0-f403-a339-e094-cb21eb1f5c46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coffee.NanoMonitor", "Coffee.NanoMonitor.csproj", "{0b2e2cca-51f2-a759-a747-cbd70d54cc4f}"
 EndProject
@@ -72,12 +68,8 @@ Global
 		{448e417d-af64-cdf6-abd7-f2e476eef897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92a152db-4ad1-64d7-7e31-575f9de80204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92a152db-4ad1-64d7-7e31-575f9de80204}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{b4592495-c8db-02de-1739-696cfe9efbaf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{b4592495-c8db-02de-1739-696cfe9efbaf}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3b7c9a9f-ef96-cc8f-03ea-5b424e935578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3b7c9a9f-ef96-cc8f-03ea-5b424e935578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{bd9d57b0-f403-a339-e094-cb21eb1f5c46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{bd9d57b0-f403-a339-e094-cb21eb1f5c46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0b2e2cca-51f2-a759-a747-cbd70d54cc4f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0b2e2cca-51f2-a759-a747-cbd70d54cc4f}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b756d7d0-74c2-214e-a309-b64f30439eb8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

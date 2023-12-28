@@ -82,11 +82,11 @@ public static class GenConfig
 
         // easy touch
         // TODO：后续需要什么脚本再添加进来
-        typeof(ETCArea),
-        typeof(ETCAxis),
-        typeof(ETCButton),
-        typeof(ETCInput),
-        typeof(ETCJoystick),
+        //typeof(ETCArea),
+        //typeof(ETCAxis),
+        //typeof(ETCButton),
+        //typeof(ETCInput),
+        //typeof(ETCJoystick),
 
         // 场景、资源加载
         typeof(UnityEngine.Resources),

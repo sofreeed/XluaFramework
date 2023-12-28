@@ -69,7 +69,7 @@ MonoBehaviour:
         CollectorGUID: 94cbd801f74863246a9f927a4428dc30
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
+        PackRuleName: PackSeparately
         FilterRuleName: CollectAtlas
         AssetTags: 
         UserData: 
